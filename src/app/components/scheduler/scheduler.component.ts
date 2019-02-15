@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Printer} from '../../objects/Printer';
+import {PrinterQueueService} from '../../services/printer-queue.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchedulerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private printerQueueService: PrinterQueueService) {
+  }
+
+  printers: Printer[];
+  selectedPrinter: Printer;
 
   ngOnInit() {
+    this.printers = this.printerQueueService.fetchPrinters();
+    this.selectedPrinter = this.printers && this.printers.length > 1 && this.printers[0] || null;
   }
 
 }
