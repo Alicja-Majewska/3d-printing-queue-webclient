@@ -66,7 +66,7 @@ export class WeekViewComponent implements OnInit, OnChanges {
 
   private findDaysAfter(): Date[] {
     const daysAfter: Date[] = [];
-    const dayOfWeek = this.selectedDate.getDay();
+    let dayOfWeek = this.selectedDate.getDay();
     if (dayOfWeek === 0) {
       dayOfWeek = 7;
     }
