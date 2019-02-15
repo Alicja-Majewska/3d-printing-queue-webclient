@@ -4,16 +4,20 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SchedulerComponent} from './components/scheduler/scheduler.component';
 import {ReservationComponent} from './components/reservation/reservation.component';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReservationComponent,
-    SchedulerComponent
+    SchedulerComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
