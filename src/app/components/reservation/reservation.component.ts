@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Reservation } from 'src/app/objects/Reservation';
-import { ReservationDataFactory } from 'src/app/data/ReservationDataFactory';
-import { ReservationBackend } from 'src/app/objects/ReservationBackend';
 import { HeightCalculatorService } from 'src/app/services/height-calculator.service';
 import { TimeComperatorService } from 'src/app/services/time-comperator.service';
 
@@ -35,12 +33,13 @@ export class ReservationComponent implements OnInit {
   }
 
   canReservationBeDeleted(): boolean {
-   return this.timeComperatorService.isStartAfterCurrentDate(new Date(), this.reservation.stopDate);
+   return this.timeComperatorService.isStartAfterCurrentDate(new Date(), this.reservation.startDate)
+   && this.timeComperatorService.isStopAfterCurrentDate(new Date(), this.reservation.stopDate);
   }
 
   canReservationBeStopped(): boolean {
-    return (this.timeComperatorService.isStartAfterCurrentDate(new Date(), this.reservation.startDate)
-    && this.timeComperatorService.isStopBeforeCurrentDate(new Date(), this.reservation.stopDate));
+    return (this.timeComperatorService.isStartBeforeCurrentDate(new Date(), this.reservation.startDate)
+    && this.timeComperatorService.isStopAfterCurrentDate(new Date(), this.reservation.stopDate));
   }
 
 }

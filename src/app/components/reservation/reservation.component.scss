@@ -1,26 +1,33 @@
 .technicalSpace {
     height : 15px;
     background-image: (
-        linear-gradient(-45deg, transparent 46%, #cdd9e0 49%, #cdd9e0 51%, transparent 55%));
-background-size: 5px 5px;
+        linear-gradient(
+            -45deg,
+            transparent 46%, 
+            #cdd9e0 49%,
+            #cdd9e0 51%,
+            transparent 55%));
+    background-size: 5px 5px;
 }
 
-.reservationBody {
+.label {
     background-color: #f3e9ee;
 }
 p {
-     margin: 5px;
-     max-width: 0.1 wv;
+    margin: 5px;
+    max-width: 0.1 wv;
+    word-wrap: break-word; 
+    font: 1em "Segoe UI" !important;    
 }
 
 .btn-default {
-     background-color: #e3e0cf;
-     width:auto;
-     height: auto;
-     margin: 5px;
-     text-align: center;
-     margin-top: 0;
-     white-space: normal;
-     overflow:hidden;
-
+    background-color: #e3e0cf;
+    width:auto;
+    height: auto;
+    margin: 5px;
+    text-align: center;
+    margin-top: 0;
+    white-space: normal;
+    overflow: hidden;
+    font: 1em "Segoe UI" !important;
 }

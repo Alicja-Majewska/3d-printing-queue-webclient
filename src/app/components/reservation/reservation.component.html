@@ -1,9 +1,9 @@
 <div *ngIf="reservation" >
   <div class="technicalSpace"></div>
-    <div class="reservationBody" [ngStyle]="{ 'height': calculateHeight() +'px'}">
-        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}">NAZWA: {{reservation.name}}</p>
-        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}">CZAS DRUKOWANIA: {{reservation.duration}}h</p>
-        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}">UŻYTKOWNIK: {{reservation.user.mail}}</p>
+    <div class="label label-default" [ngStyle]="{ 'height': calculateHeight() +'px'}">
+        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}"><b>NAZWA: </b>{{reservation.name}}</p>
+        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}"><b>CZAS DRUKOWANIA: </b>{{reservation.duration}}h</p>
+        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}"><b>UŻYTKOWNIK: </b>{{reservation.user.mail}}</p>
         <p>
           <button *ngIf="canReservationBeDeleted()" class="btn btn-default"
           [ngStyle]="{'height': calculateSizeOfElements()*3 +'px', 'font-size': calculateSizeOfElements() +'px'}">
