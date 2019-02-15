@@ -19,4 +19,9 @@ export class ReservationComponent implements OnInit {
     this.reservation = Reservation.fromBackend(ReservationDataFactory.getOne());
   }
 
+  convertDurationToMins(): number {
+    return this.reservation.duration*60;
+  }
+
+
 }
