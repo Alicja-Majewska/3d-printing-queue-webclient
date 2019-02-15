@@ -6,12 +6,14 @@ import {SchedulerComponent} from './components/scheduler/scheduler.component';
 import {ReservationComponent} from './components/reservation/reservation.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {FormsModule} from '@angular/forms';
+import { WeekViewComponent } from './components/week-view/week-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReservationComponent,
     SchedulerComponent,
+    WeekViewComponent,
   ],
   imports: [
     BrowserModule,
