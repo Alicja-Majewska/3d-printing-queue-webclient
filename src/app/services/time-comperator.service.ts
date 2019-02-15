@@ -7,19 +7,19 @@ export class TimeComperatorService {
 
   constructor() { }
 
-  isStartBeforeCurrentDate(currentDate: Date, startDate: Date) {
+  isStartBeforeCurrentDate(currentDate: Date, startDate: Date): boolean{
     return startDate.getTime() < currentDate.getTime(); 
   }
 
-  isStopBeforeCurrentDate(currentDate: Date, stopDate: Date) {
-    stopDate.getTime() < currentDate.getTime(); 
+  isStopBeforeCurrentDate(currentDate: Date, stopDate: Date): boolean {
+    return stopDate.getTime() < currentDate.getTime(); 
   }
 
-  isStartAfterCurrentDate(currentDate: Date, startDate: Date) {
-    return currentDate.getTime() > startDate.getTime()
+  isStartAfterCurrentDate(currentDate: Date, startDate: Date): boolean {
+    return currentDate.getTime() < startDate.getTime()
   } 
-  isStopAfterCurrentDate(currentDate: Date, stopDate: Date) {
-    return currentDate.getTime() > stopDate.getTime()
+  isStopAfterCurrentDate(currentDate: Date, stopDate: Date): boolean {
+    return currentDate.getTime() < stopDate.getTime()
   }
 
 

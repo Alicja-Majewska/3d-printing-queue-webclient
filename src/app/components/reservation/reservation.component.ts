@@ -3,6 +3,7 @@ import { Reservation } from 'src/app/objects/Reservation';
 import { ReservationDataFactory } from 'src/app/data/ReservationDataFactory';
 import { ReservationBackend } from 'src/app/objects/ReservationBackend';
 import { HeightCalculatorService } from 'src/app/services/height-calculator.service';
+import { TimeComperatorService } from 'src/app/services/time-comperator.service';
 
 @Component({
   selector: 'app-reservation',
@@ -11,7 +12,8 @@ import { HeightCalculatorService } from 'src/app/services/height-calculator.serv
 })
 export class ReservationComponent implements OnInit {
 
-  constructor(private heightCalculatorService: HeightCalculatorService) { }
+  constructor(private heightCalculatorService: HeightCalculatorService,
+    private timeComperatorService: TimeComperatorService) { }
 
   @Input()
   reservation: Reservation;
@@ -30,6 +32,15 @@ export class ReservationComponent implements OnInit {
     } else {
       return 20;
     }
+  }
+
+  canReservationBeDeleted(): boolean {
+   return this.timeComperatorService.isStartAfterCurrentDate(new Date(), this.reservation.stopDate);
+  }
+
+  canReservationBeStopped(): boolean {
+    return (this.timeComperatorService.isStartAfterCurrentDate(new Date(), this.reservation.startDate)
+    && this.timeComperatorService.isStopBeforeCurrentDate(new Date(), this.reservation.stopDate));
   }
 
 }
