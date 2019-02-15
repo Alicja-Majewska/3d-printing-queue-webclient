@@ -2,6 +2,7 @@ import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core'
 import {PrinterQueueService} from '../../services/printer-queue.service';
 import {Reservation} from '../../objects/Reservation';
 import {Printer} from '../../objects/Printer';
+import {TimeComperatorService} from '../../services/time-comperator.service';
 
 @Component({
   selector: 'app-week-view',
@@ -22,7 +23,7 @@ export class WeekViewComponent implements OnInit, OnChanges {
   private endOfWeek: Date;
   daysInWeekOrdered: Date[];
 
-  constructor(private printerQueueService: PrinterQueueService) {
+  constructor(private printerQueueService: PrinterQueueService, private timeComparatorService: TimeComperatorService) {
   }
 
   ngOnInit() {
@@ -39,9 +40,10 @@ export class WeekViewComponent implements OnInit, OnChanges {
   }
 
   findReservationFromDate(reservations: Reservation[], currentDate): Reservation[] {
-    return reservations.filter(reservation => this.areInTheSameDay(reservation.startDate, currentDate)
+    return reservations.filter(reservation =>
+    this.timeComparatorService.haveDatesTheSameDay(reservation.startDate, currentDate)
     || this.isStartBeforeCurrentDateAndStopAfterCurrentDate(currentDate, reservation.startDate, reservation.stopDate)
-    || this.areInTheSameDay(reservation.stopDate, currentDate));
+    || this.timeComparatorService.haveDatesTheSameDay(reservation.stopDate, currentDate));
   }
 
 
@@ -101,12 +103,7 @@ export class WeekViewComponent implements OnInit, OnChanges {
     return daysBefore;
   }
 
-  private areInTheSameDay(dateToCheck: Date, dateCurrent: Date): boolean {
-    var result = dateToCheck.getFullYear === dateCurrent.getFullYear
-      && dateToCheck.getMonth() === dateCurrent.getMonth()
-      && dateToCheck.getDate() === dateCurrent.getDate();
-    return result;
-  }
+
 
   getDayOfWeek(date: Date): string {
     switch (date.getDay()) {

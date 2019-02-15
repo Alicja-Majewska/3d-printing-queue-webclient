@@ -1,5 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Reservation} from '../../objects/Reservation';
+import {HeightCalculatorService} from '../../services/height-calculator.service';
+import {TimeComperatorService} from '../../services/time-comperator.service';
 
 @Component({
   selector: 'app-day-view',
@@ -14,11 +16,20 @@ export class DayViewComponent implements OnInit {
   @Input()
   date: Date;
 
-  constructor() {
+  constructor(private heightCalculatorService: HeightCalculatorService, private timeComparatorService: TimeComperatorService) {
   }
 
   ngOnInit() {
   }
 
-  
+  calculateOffset(reservation: Reservation): number {
+    if (!this.timeComparatorService.haveDatesTheSameDay(reservation.startDate, this.date)) {
+      return 0;
+    }
+    const hours = reservation.startDate.getHours() - TimeComperatorService.START_HOUR;
+    const minutes = reservation.startDate.getMinutes();
+    var heightFromHoursAndMinutes = this.heightCalculatorService.calculateHeightFromHoursAndMinutes(hours, minutes);
+      return heightFromHoursAndMinutes;
+  }
+
 }

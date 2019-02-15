@@ -10,15 +10,16 @@ export class Reservation {
   private _type: string;
   private _user: User;
 
-    static fromBackend(reservationBackend: ReservationBackend): Reservation{
+  static fromBackend(reservationBackend: ReservationBackend): Reservation {
     const reservation: Reservation = new Reservation();
-        reservation._id = reservationBackend.id;
-        reservation._name = reservationBackend.name;
-        reservation._duration = reservationBackend.duration;
-        reservation._startDate = new Date(reservationBackend.startDate);
-        reservation._stopDate = new Date(reservationBackend.stopDate);
-        reservation._type = reservationBackend.type;
-        reservation._user = reservationBackend.user;
+    reservation._id = reservationBackend.id;
+    reservation._name = reservationBackend.name;
+    reservation._duration = reservationBackend.duration;
+    reservation._startDate = new Date(reservationBackend.startDate);
+    reservation._stopDate = new Date(reservationBackend.stopDate);
+    debugger;
+    reservation._type = reservationBackend.type;
+    reservation._user = reservationBackend.user;
 
     return reservation;
   }
@@ -39,12 +40,12 @@ export class Reservation {
     return this._duration;
   }
 
-    public get startDate(): Date {
-        return this._startDate;
+  public get startDate(): Date {
+    return this._startDate;
   }
 
-    public get stopDate(): Date {
-        return this._stopDate;
+  public get stopDate(): Date {
+    return this._stopDate;
   }
 
   public get type(): string {
