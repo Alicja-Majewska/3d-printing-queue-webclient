@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import { WeekViewComponent } from './components/week-view/week-view.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DayViewComponent } from './components/day-view/day-view.component';
+import { TimeRulerComponent } from './components/time-ruler/time-ruler.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DayViewComponent } from './components/day-view/day-view.component';
     SchedulerComponent,
     WeekViewComponent,
     DayViewComponent,
+    TimeRulerComponent,
   ],
   imports: [
     BrowserModule,

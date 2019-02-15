@@ -1,0 +1,6 @@
+<section class="m-2 flex-column" style="padding-top: 3.5rem">
+  <p *ngFor="let timeSlice of timeSlices" class="m-0"
+     [ngStyle]="{'font-weight': getFontWeight(timeSlice), 'height.px':calculateHeight()}">
+    {{timeSlice}}
+  </p>
+</section>

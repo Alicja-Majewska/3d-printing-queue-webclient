@@ -1,7 +1,12 @@
-<section style="flex-direction: row; flex-wrap: nowrap; display: flex; flex:auto">
-  <div></div>
+<section style=" flex-direction: row; flex-wrap: nowrap; display: flex; flex:auto">
+  <div>
+    <app-time-ruler></app-time-ruler>
+  </div>
 
   <div *ngFor="let day of daysInWeekOrdered" style="width: 14%; border-left: solid #bbb4bc 1px">
+    <div class="pl-3">{{getDayOfWeek(day)}}</div>
+    <div class="pl-3">{{day | date:'shortDate' }}</div>
+    <hr>
     <app-day-view [date]="day" [reservations]="getReservationsForDay(day)"></app-day-view>
   </div>
 
