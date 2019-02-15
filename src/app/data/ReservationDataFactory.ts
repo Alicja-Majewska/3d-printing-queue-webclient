@@ -8,20 +8,21 @@ export class ReservationDataFactory {
       id: 1,
       name: "Pierwsze drukowanie",
       duration: 3,
-      startDate: (new Date(2019, 02, 15, 15, 30)).toDateString(),
-      stopDate: (new Date(2019, 02, 15, 15, 30)).toDateString(),
+      startDate: new Date('2019-02-15T13:30:00').toDateString(),
+      stopDate: new Date('2019-02-15T16:30:00').toDateString(),
       type: "PRINTING",
       user: UserDataFactory.getOne(),
     }
   }
+
 
   static getMany(): ReservationBackend[] {
     return [<ReservationBackend> {
       id: 1,
       name: "Drugie drukowanie",
       duration: 3,
-      startData: (new Date(2019, 02, 15, 15, 30)).toDateString(),
-      stopData: (new Date(2019, 02, 15, 19, 00)).toDateString(),
+      startDate: new Date('2019-02-15T13:30:00').toDateString(),
+      stopDate: new Date('2019-02-15T16:30:00').toDateString(),
       type: "PRINTING",
       user: UserDataFactory.getOne(),
     },
@@ -29,8 +30,8 @@ export class ReservationDataFactory {
         id: 2,
         name: "Pierwsze drukowanie",
         duration: 1,
-        startData: (new Date(2019, 02, 14, 14, 00)).toDateString(),
-        stopData: (new Date(2019, 02, 14, 15, 30)).toDateString(),
+        startDate: new Date('2019-02-14T14:30:00').toDateString(),
+        stopDate: new Date('2019-02-14T16:00:00').toDateString(),
         type: "PRINTING",
         user: UserDataFactory.getOne(),
       },
@@ -38,8 +39,8 @@ export class ReservationDataFactory {
         id: 3,
         name: "Pierwsze drukowanie",
         duration: 6,
-        startData: (new Date(2019, 02, 12, 9, 00)).toDateString(),
-        stopData: (new Date(2019, 02, 14, 15, 30)).toDateString(),
+        startDate: new Date('2019-02-12T09:30:00').toDateString(),
+        stopDate: new Date('2019-02-12T16:00:00').toDateString(),
         type: "PRINTING",
         user: UserDataFactory.getOne(),
       }

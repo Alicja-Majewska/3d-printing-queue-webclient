@@ -26,6 +26,7 @@ export class WeekViewComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
+    console.log( this.reservations );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
