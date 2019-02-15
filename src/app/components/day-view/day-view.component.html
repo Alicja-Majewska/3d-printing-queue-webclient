@@ -1,0 +1,9 @@
+<section>
+
+  <div class="pl-3">{{getDayOfWeek()}}</div>
+  <div class="pl-3">{{date | date:'shortDate' }}</div>
+
+  <div *ngFor="let reservation of reservations" class="m-2" style="display: flex; flex-direction: column">
+    <app-reservation [reservation]="reservation"></app-reservation>
+  </div>
+</section>

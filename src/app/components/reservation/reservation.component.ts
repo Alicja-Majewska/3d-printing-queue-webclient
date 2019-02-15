@@ -17,8 +17,6 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit() {
     this.reservation = Reservation.fromBackend(ReservationDataFactory.getOne());
-    console.log(this.reservation);
-
   }
 
 }

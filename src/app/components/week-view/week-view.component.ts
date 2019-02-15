@@ -13,24 +13,39 @@ export class WeekViewComponent implements OnInit, OnChanges {
 
   @Input()
   printer: Printer;
-  reservations: Reservation[];
+  sortedReservations: Map<Date, Reservation[]> = new Map<Date, Reservation[]>();
 
   @Input()
   selectedDate: Date;
 
   private startOfWeek: Date;
   private endOfWeek: Date;
+  daysInWeekOrdered: Date[];
 
   constructor(private printerQueueService: PrinterQueueService) {
   }
 
   ngOnInit() {
-    this.reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
-    console.log( this.reservations );
+    const reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
+    this.daysInWeekOrdered = this.generateDaysInWeek();
+    this.sortReservations(reservations);
+  }
+
+  private sortReservations(reservations: Reservation[]) {
+    this.sortedReservations.clear();
+    this.daysInWeekOrdered.forEach(date => {
+      this.sortedReservations.set(date, this.findReservationFromDate(reservations, date));
+    });
+  }
+
+  findReservationFromDate(reservations: Reservation[], date): Reservation[] {
+    return reservations.filter(reservation => this.areInTheSameDay(reservation, date));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.generateDaysInWeek();
+    const reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
+    this.daysInWeekOrdered = this.generateDaysInWeek();
+    this.sortReservations(reservations);
   }
 
   generateDaysInWeek(): Date[] {
@@ -41,14 +56,16 @@ export class WeekViewComponent implements OnInit, OnChanges {
     allDaysOfWeek.push(this.selectedDate);
     allDaysOfWeek = allDaysOfWeek.concat(this.findDaysAfter());
 
-
     return allDaysOfWeek;
   }
 
-  private findDaysAfter(): Date[]  {
+  getReservationsForDay(day:Date): Reservation[] {
+    return this.sortedReservations && this.sortedReservations .get(day) || [];
+  }
+  private findDaysAfter(): Date[] {
     const daysAfter: Date[] = [];
     const dayOfWeek = this.selectedDate.getDay();
-    for(let i = 1; dayOfWeek + i  <= 7; ++i) {
+    for (let i = 1; dayOfWeek + i <= 7; ++i) {
       const dateAfter = new Date(this.selectedDate);
       dateAfter.setDate(dateAfter.getDate() + i);
       daysAfter.push(dateAfter);
@@ -57,10 +74,10 @@ export class WeekViewComponent implements OnInit, OnChanges {
   }
 
 
-  private findDaysBefore(): Date[]  {
+  private findDaysBefore(): Date[] {
     const daysBefore: Date[] = [];
     const dayOfWeek = this.selectedDate.getDay();
-    for(let i = dayOfWeek - 1; i > 0; --i) {
+    for (let i = dayOfWeek - 1; i > 0; --i) {
       const dateBefore = new Date(this.selectedDate);
       dateBefore.setDate(dateBefore.getDate() - i);
       daysBefore.push(dateBefore);
@@ -68,4 +85,11 @@ export class WeekViewComponent implements OnInit, OnChanges {
     return daysBefore;
   }
 
+  private areInTheSameDay(reservation: Reservation, date: Date): boolean {
+    const startDate = reservation.startDate;
+    var result = startDate.getFullYear === date.getFullYear
+      && startDate.getMonth() === date.getMonth()
+      && startDate.getDate() === date.getDate();
+    return result;
+  }
 }
