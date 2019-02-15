@@ -1,5 +1,5 @@
 export interface PrinterBackend {
-  id: number;
+  id: string;
   name: string;
   status: string;
 }

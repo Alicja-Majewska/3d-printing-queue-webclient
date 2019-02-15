@@ -1,7 +1,7 @@
 import { User } from './User';
 
 export interface ReservationBackend {
-    id: number;
+    id: string;
     name: string;
     duration: number;
     startDate: string;

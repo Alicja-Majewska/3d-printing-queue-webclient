@@ -1,7 +1,7 @@
 import { UserEnum } from './UserEnum';
 
 export interface UserBackend {
-    id: number;
+    id: string;
     name: string;
     surname: string;
     mail: string;

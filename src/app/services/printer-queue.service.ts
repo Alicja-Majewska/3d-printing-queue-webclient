@@ -16,8 +16,11 @@ export class PrinterQueueService {
     return Printer.fromBackends(PrintersDataFactory.getMany());
   }
 
-  fetchReservations(dateStart: Date, dateEnd: Date, printerId: number): Reservation[] {
+  fetchReservations(dateStart: Date, dateEnd: Date, printerId: string): Reservation[] {
     return Reservation.fromBackends(ReservationDataFactory.getMany());
   }
 
+  addReservation(): void {
+
+  }
 }

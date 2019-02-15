@@ -5,7 +5,7 @@ export class UserDataFactory {
 
     static getOne(): UserBackend {
         return <UserBackend> {
-            id: 1,
+            id: '1',
             name: "Adam",
             surname: "Adminek",
             mail: "adamadminek@admin.com"

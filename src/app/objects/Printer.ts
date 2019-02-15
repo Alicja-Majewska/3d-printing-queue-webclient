@@ -3,7 +3,7 @@ import {PrinterBackend} from './PrinterBackend';
 
 export class Printer {
 
-  private _id: number;
+  private _id: string;
   private _name: string;
   private _status: PrinterStatus;
 
@@ -21,7 +21,7 @@ export class Printer {
     return printerBackends.map(backend => Printer.fromBackend(backend));
   }
 
-  get id(): number {
+  get id(): string {
     return this._id;
   }
 

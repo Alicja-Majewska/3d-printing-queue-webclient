@@ -2,7 +2,7 @@ import {User} from './User';
 import {ReservationBackend} from './ReservationBackend';
 
 export class Reservation {
-  private _id: number;
+  private _id: string;
   private _name: string;
   private _duration: number;
   private _startDate: Date;
@@ -27,7 +27,7 @@ export class Reservation {
     return reservations.map(backend => Reservation.fromBackend(backend));
   }
 
-  public get id(): number {
+  public get id(): string {
     return this._id;
   }
 

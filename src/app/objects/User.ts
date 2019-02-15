@@ -2,13 +2,13 @@ import { UserEnum } from './UserEnum';
 
 export class User {
   
-    private _id: number;
+    private _id: string;
     private _name: string;
     private _surname: string;
     private _mail: string;
     private _role: UserEnum;
 
-    get id(): number {
+    get id(): string {
         return this._id;
     }
 
