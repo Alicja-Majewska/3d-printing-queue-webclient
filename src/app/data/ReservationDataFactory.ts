@@ -10,8 +10,8 @@ export class ReservationDataFactory {
             id: 1,
             name: "Pierwsze drukowanie",
             duration: 3,
-            startData: "17.02.2019 13:00",
-            stopData: "17.02.2019 16:30",
+            startDate: "17.02.2019 13:00",
+            stopDate: "17.02.2019 16:30",
             type: "PRINTING",
             user: UserDataFactory.getOne(),
         }
