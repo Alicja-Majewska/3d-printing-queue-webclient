@@ -23,4 +23,5 @@ export class ReservationComponent implements OnInit {
     return this.reservation.duration*60;
   }
 
+
 }

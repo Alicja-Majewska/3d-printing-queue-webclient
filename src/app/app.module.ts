@@ -8,6 +8,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {FormsModule} from '@angular/forms';
 import { WeekViewComponent } from './components/week-view/week-view.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DayViewComponent } from './components/day-view/day-view.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ReservationComponent,
     SchedulerComponent,
     WeekViewComponent,
+    DayViewComponent,
   ],
   imports: [
     BrowserModule,

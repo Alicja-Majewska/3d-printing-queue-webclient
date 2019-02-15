@@ -1,1 +1,6 @@
-<p>{{selectedDate}}</p>
+<section style="flex-direction: row; flex-wrap: nowrap; display: flex; flex:auto">
+  <div *ngFor="let day of daysInWeekOrdered" style="width: 14%; border-left: solid #bbb4bc 1px">
+    <app-day-view [date]="day" [reservations]="getReservationsForDay(day)"></app-day-view>
+  </div>
+
+</section>
