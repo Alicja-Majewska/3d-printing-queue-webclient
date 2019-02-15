@@ -16,19 +16,23 @@ export class WeekViewComponent implements OnInit {
   reservations: Reservation[];
 
   @Input()
-  selectedDate: NgbDate;
+  selectedDate: Date;
 
-  private startDate: Date;
-  private endDate: Date;
+  private startOfWeek: Date;
+  private endOfWeek: Date;
 
   constructor(private printerQueueService: PrinterQueueService) {
   }
 
   ngOnInit() {
-    this.reservations = this.printerQueueService.fetchReservations(this.startDate, this.endDate, this.printer.id);
+    this.reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
   }
 
-  generateDayForWeek(): Date[] {
+  generateDaysInWeek(): Date[] {
+    var day = this.selectedDate.getDay();
+
+    console.log(day);
+
 return [];
   }
 
