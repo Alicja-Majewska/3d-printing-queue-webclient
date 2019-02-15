@@ -38,9 +38,17 @@ export class WeekViewComponent implements OnInit, OnChanges {
     });
   }
 
-  findReservationFromDate(reservations: Reservation[], date): Reservation[] {
-    return reservations.filter(reservation => this.areInTheSameDay(reservation, date));
+  findReservationFromDate(reservations: Reservation[], currentDate): Reservation[] {
+    return reservations.filter(reservation => this.areInTheSameDay(reservation.startDate, currentDate)
+    || this.isStartBeforeCurrentDateAndStopAfterCurrentDate(currentDate, reservation.startDate, reservation.stopDate)
+    || this.areInTheSameDay(reservation.stopDate, currentDate));
   }
+
+
+  isStartBeforeCurrentDateAndStopAfterCurrentDate(currentDate: Date, startDate: Date, stopDate: Date) {
+    return startDate.getTime() < currentDate.getTime() && currentDate.getTime() < stopDate.getTime();
+  }
+
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -93,11 +101,10 @@ export class WeekViewComponent implements OnInit, OnChanges {
     return daysBefore;
   }
 
-  private areInTheSameDay(reservation: Reservation, date: Date): boolean {
-    const startDate = reservation.startDate;
-    var result = startDate.getFullYear === date.getFullYear
-      && startDate.getMonth() === date.getMonth()
-      && startDate.getDate() === date.getDate();
+  private areInTheSameDay(dateToCheck: Date, dateCurrent: Date): boolean {
+    var result = dateToCheck.getFullYear === dateCurrent.getFullYear
+      && dateToCheck.getMonth() === dateCurrent.getMonth()
+      && dateToCheck.getDate() === dateCurrent.getDate();
     return result;
   }
 

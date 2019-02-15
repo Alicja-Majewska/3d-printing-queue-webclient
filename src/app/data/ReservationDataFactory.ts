@@ -15,14 +15,13 @@ export class ReservationDataFactory {
     }
   }
 
-
   static getMany(): ReservationBackend[] {
     return [<ReservationBackend> {
       id: 1,
       name: "Drugie drukowanie",
       duration: 3,
-      startDate: new Date('2019-02-15T13:30:00').toDateString(),
-      stopDate: new Date('2019-02-15T16:30:00').toDateString(),
+      startDate: new Date('2019-02-15T11:00:00').toDateString(),
+      stopDate: new Date('2019-02-15T14:30:00').toDateString(),
       type: "PRINTING",
       user: UserDataFactory.getOne(),
     },
@@ -37,10 +36,19 @@ export class ReservationDataFactory {
       },
       <ReservationBackend> {
         id: 3,
-        name: "Pierwsze drukowanie",
+        name: "Trzecie drukowanie",
         duration: 6,
         startDate: new Date('2019-02-12T09:30:00').toDateString(),
         stopDate: new Date('2019-02-12T16:00:00').toDateString(),
+        type: "PRINTING",
+        user: UserDataFactory.getOne(),
+      },
+      <ReservationBackend> {
+        id: 4,
+        name: "Czwarte drukowanie",
+        duration: 6,
+        startDate: new Date('2019-02-15T14:30:00').toDateString(),
+        stopDate: new Date('2019-02-17T16:00:00').toDateString(),
         type: "PRINTING",
         user: UserDataFactory.getOne(),
       }

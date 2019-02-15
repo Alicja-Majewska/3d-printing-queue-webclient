@@ -1,6 +1,7 @@
 import { UserEnum } from './UserEnum';
 
 export class User {
+  
     private _id: number;
     private _name: string;
     private _surname: string;
