@@ -1,4 +1,4 @@
-<form (ngSubmit)="save()" [formGroup]="reservationForm" style="display: flex; flex-direction: row">
+<form (ngSubmit)="addReservation()" [formGroup]="reservationForm" style="display: flex; flex-direction: row">
   <div class="flex-column mr-2">
     <label class="form-control-label" for="reservationNameInput">Nazwa rezerwacji</label>
     <input id="reservationNameInput" class="form-control" placeholder="Drukowanie drzewa" type="text"
@@ -8,9 +8,9 @@
     <label class="form-control-label" for="reservationDurationInput">Czas drukownania</label>
     <input id="reservationDurationInput" class="form-control" type="number" placeholder="6" formControlName="duration"/>
   </div>
-  <div class="flex-column mr-2">
+  <div class="flex-column mr-2" formGroupName="startDateTime">
     <label class="form-control-label" for="startTimeInput">Godzina startu</label>
-    <input id="startTimeInput" class="form-control" type="text" placeholder=11:00 formControlName="startTime"/>
+    <input id="startTimeInput" class="form-control" type="text" placeholder="11:00" formControlName="time"/>
   </div>
-  <button class="btn btn-success pl-3 pr-3">Dodaj</button>
+  <button [disabled]="reservationForm.invalid" class="btn btn-success pl-3 pr-3">Dodaj</button>
 </form>
