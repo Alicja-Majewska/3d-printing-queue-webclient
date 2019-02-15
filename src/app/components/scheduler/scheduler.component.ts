@@ -19,7 +19,7 @@ export class SchedulerComponent implements OnInit {
   selectedPrinter: Printer;
 
   convertFromNgbDate() : Date {
-    return this.selectedDate && new Date(this.selectedDate.year, this.selectedDate.month, this.selectedDate.day) || new Date();
+    return this.selectedDate && new Date(this.selectedDate.year, this.selectedDate.month - 1, this.selectedDate.day) || new Date();
   }
 
   ngOnInit() {

@@ -43,15 +43,16 @@ export class WeekViewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
+    //TODO chain observables
     const reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
     this.daysInWeekOrdered = this.generateDaysInWeek();
     this.sortReservations(reservations);
   }
 
   generateDaysInWeek(): Date[] {
-    const day = this.selectedDate.getDay();
-    let allDaysOfWeek: Date[] = [];
 
+    let allDaysOfWeek: Date[] = [];
     allDaysOfWeek = allDaysOfWeek.concat(this.findDaysBefore());
     allDaysOfWeek.push(this.selectedDate);
     allDaysOfWeek = allDaysOfWeek.concat(this.findDaysAfter());
@@ -59,12 +60,16 @@ export class WeekViewComponent implements OnInit, OnChanges {
     return allDaysOfWeek;
   }
 
-  getReservationsForDay(day:Date): Reservation[] {
+  getReservationsForDay(day: Date): Reservation[] {
     return this.sortedReservations && this.sortedReservations .get(day) || [];
   }
+
   private findDaysAfter(): Date[] {
     const daysAfter: Date[] = [];
     const dayOfWeek = this.selectedDate.getDay();
+    if (dayOfWeek === 0) {
+      dayOfWeek = 7;
+    }
     for (let i = 1; dayOfWeek + i <= 7; ++i) {
       const dateAfter = new Date(this.selectedDate);
       dateAfter.setDate(dateAfter.getDate() + i);
@@ -76,7 +81,10 @@ export class WeekViewComponent implements OnInit, OnChanges {
 
   private findDaysBefore(): Date[] {
     const daysBefore: Date[] = [];
-    const dayOfWeek = this.selectedDate.getDay();
+    let dayOfWeek = this.selectedDate.getDay();
+    if (dayOfWeek === 0) {
+      dayOfWeek = 7;
+    }
     for (let i = dayOfWeek - 1; i > 0; --i) {
       const dateBefore = new Date(this.selectedDate);
       dateBefore.setDate(dateBefore.getDate() - i);
