@@ -11,7 +11,7 @@ export class TimeRulerComponent implements OnInit {
   static readonly INTERVAL = 15;
   static readonly END_HOUR = 19;
   static readonly MINUTES_IN_HOUR = 60;
-  static readonly PIXEL_TO_MINUTE_RATIO = 2;
+
 
   timeSlices: string[];
 
@@ -50,7 +50,7 @@ export class TimeRulerComponent implements OnInit {
     return timeSlice.endsWith('00') ? 'bold' : 'normal';
   }
 
-  calculateHeight():number {
+  calculateHeight(): number {
     return TimeRulerComponent.INTERVAL * TimeRulerComponent.PIXEL_TO_MINUTE_RATIO;
   }
 }
