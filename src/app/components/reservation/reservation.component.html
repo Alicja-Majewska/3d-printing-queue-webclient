@@ -1,20 +1,12 @@
-<div *ngIf="reservation">
-  <div class="technicalSpace">
-  </div>
-  <div class="reservationBody">
-NAZWA: {{reservation.name}}
-CZAS DRUKOWANIA: {{reservation.duration}}
-UŻYTKOWNIK: {{reservation.user.mail}}
-<section>
-<button type="delete" class="btn btn-default btn-lg" >
-    <i class="fa fa-trash"></i>
-Anuluj rezerwacje
-</button>
-<button>
-Skończyłem rezerwacje
-</button>
-</section>
-  </div>
-  <div class="technicalSpace">
-  </div>
+<div *ngIf="reservation" >
+  <div class="technicalSpace"></div>
+    <div class="reservationBody">
+        <p>NAZWA: {{reservation.name}}</p>
+        <p>CZAS DRUKOWANIA: {{reservation.duration}}h</p>
+        <p>UŻYTKOWNIK: {{reservation.user.mail}}</p>
+        <p><button class="btn btn-default">Usuń rezerwację <i class="fa fa-trash"></i></button></p>
+        <p><button class="btn btn-default">Skończyłem drukować <i class="fa fa-close"></i></button></p>
+     </div>
+    <div class="technicalSpace"></div>
 </div>
+
