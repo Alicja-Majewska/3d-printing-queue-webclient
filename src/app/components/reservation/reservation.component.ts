@@ -17,8 +17,10 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit() {
     this.reservation = Reservation.fromBackend(ReservationDataFactory.getOne());
-    console.log(this.reservation);
+  }
 
+  convertDurationToMins(): number {
+    return this.reservation.duration*60;
   }
 
 }

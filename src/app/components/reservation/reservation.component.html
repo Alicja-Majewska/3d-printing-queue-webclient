@@ -1,6 +1,6 @@
 <div *ngIf="reservation" >
   <div class="technicalSpace"></div>
-    <div class="reservationBody">
+    <div class="reservationBody" [ngStyle]="{ 'height': convertDurationToMins() +'px'}">
         <p>NAZWA: {{reservation.name}}</p>
         <p>CZAS DRUKOWANIA: {{reservation.duration}}h</p>
         <p>UŻYTKOWNIK: {{reservation.user.mail}}</p>
