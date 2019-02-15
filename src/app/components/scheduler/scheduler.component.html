@@ -1,5 +1,5 @@
-<section class="m-5" style="display: flex; flex: auto">
-  <div style="display: flex; flex-direction: column; " class="pr-5">
+<section class="m-4" style="display: flex; flex: auto;flex-direction: row; flex-wrap: wrap">
+  <div class="pr-5 flex-column mt-4">
     <label class="form-control-label">Wybierz drukarkę</label>
     <ng-select [items]="printers"
                bindLabel="name"
@@ -11,7 +11,7 @@
   </div>
 
 
-  <div style="width: 250px; display: flex; flex-direction: column;">
+  <div class="flex-column mr-5 mt-4" style="width: 250px">
     <label for="selectDateInput" class="form-control-label mr-3">Wybierz datę</label>
     <input type="text"
            id="selectDateInput"
@@ -20,6 +20,10 @@
            placeholder="yyyy-mm-dd"
            ngbDatepicker #startDate="ngbDatepicker"
            (click)="startDate.toggle()"/>
+  </div>
+
+  <div class="mt-4">
+    <app-reservation-creator></app-reservation-creator>
   </div>
 </section>
 

@@ -17,7 +17,6 @@ export class Reservation {
     reservation._duration = reservationBackend.duration;
     reservation._startDate = new Date(reservationBackend.startDate);
     reservation._stopDate = new Date(reservationBackend.stopDate);
-    debugger;
     reservation._type = reservationBackend.type;
     reservation._user = reservationBackend.user;
 
