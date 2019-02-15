@@ -1,14 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ReservationComponent } from './reservation/reservation.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {SchedulerComponent} from './components/scheduler/scheduler.component';
+import {ReservationComponent} from './components/reservation/reservation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReservationComponent
+    ReservationComponent,
+    SchedulerComponent
   ],
   imports: [
     BrowserModule,
@@ -17,4 +18,5 @@ import { ReservationComponent } from './reservation/reservation.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
