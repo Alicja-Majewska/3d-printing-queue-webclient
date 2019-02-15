@@ -10,6 +10,12 @@ export class Reservation {
     private _type: string;
     private _user: User;
 
+    static fromBackend(reservationId: number){
+        const reservation: Reservation = new Reservation();
+
+        return reservation;
+    }
+
     public get id(): number {
         return this._id;
     }
