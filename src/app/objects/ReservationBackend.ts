@@ -1,3 +1,5 @@
+import { User } from './User';
+
 export interface ReservationBackend {
     id: number;
     name: string;

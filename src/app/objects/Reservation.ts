@@ -1,4 +1,5 @@
 import { User } from './User';
+import { ReservationBackend } from './ReservationBackend';
 
 export class Reservation {
     private _id: number;
