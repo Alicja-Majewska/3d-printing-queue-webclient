@@ -1,0 +1,9 @@
+export interface ReservationBackend {
+    id: number;
+    name: string;
+    duration: number;
+    startData: string;
+    stopData: string;
+    type: string;
+    user: User;
+}
