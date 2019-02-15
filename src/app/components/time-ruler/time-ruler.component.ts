@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {HeightCalculatorService} from '../../services/height-calculator.service';
 
 @Component({
   selector: 'app-time-ruler',
@@ -8,14 +9,14 @@ import {Component, OnInit} from '@angular/core';
 export class TimeRulerComponent implements OnInit {
 
   static readonly START_HOUR = 7;
-  static readonly INTERVAL = 15;
+  static readonly INTERVAL_IN_MINUTES = 15;
   static readonly END_HOUR = 19;
   static readonly MINUTES_IN_HOUR = 60;
 
 
   timeSlices: string[];
 
-  constructor() {
+  constructor(private heightCalculatorService: HeightCalculatorService) {
   }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class TimeRulerComponent implements OnInit {
     const timeSlices: string[] = [];
 
     for (let hour = TimeRulerComponent.START_HOUR; hour < TimeRulerComponent.END_HOUR; ++hour) {
-      for (let minutes = 0; minutes < TimeRulerComponent.MINUTES_IN_HOUR; minutes += TimeRulerComponent.INTERVAL) {
+      for (let minutes = 0; minutes < TimeRulerComponent.MINUTES_IN_HOUR; minutes += TimeRulerComponent.INTERVAL_IN_MINUTES) {
         timeSlices.push(this.buildTimeSlice(hour, minutes));
       }
     }
@@ -51,6 +52,6 @@ export class TimeRulerComponent implements OnInit {
   }
 
   calculateHeight(): number {
-    return TimeRulerComponent.INTERVAL * TimeRulerComponent.PIXEL_TO_MINUTE_RATIO;
+    return this.heightCalculatorService.calculateHeightFromMinutes(TimeRulerComponent.INTERVAL_IN_MINUTES);
   }
 }
