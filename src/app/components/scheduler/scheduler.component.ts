@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Printer} from '../../objects/Printer';
 import {PrinterQueueService} from '../../services/printer-queue.service';
+import {PrinterStatus} from '../../objects/PrinterStatus';
 
 @Component({
   selector: 'app-scheduler',
@@ -20,4 +21,7 @@ export class SchedulerComponent implements OnInit {
     this.selectedPrinter = this.printers && this.printers.length > 1 && this.printers[0] || null;
   }
 
+  isPrinterBroken(printer: Printer) : boolean {
+    return printer.status == PrinterStatus.BROKEN;
+  }
 }
