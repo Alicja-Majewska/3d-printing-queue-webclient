@@ -1,9 +1,28 @@
-<ng-select [items]="printers"
-           bindLabel="name"
-           [(ngModel)]="selectedPrinter"
-           [clearable]="false"
-           [searchable]="false"
-           [ngClass]="{'printerBroken': isPrinterBroken(selectedPrinter)}"
-          >
-</ng-select>
+<section class="m-5" style="display: flex; flex: auto">
+  <div style="display: flex; flex-direction: column; " class="pr-5">
+    <label class="form-control-label">Wybierz drukarkę</label>
+    <ng-select [items]="printers"
+               bindLabel="name"
+               [(ngModel)]="selectedPrinter"
+               [clearable]="false"
+               [searchable]="false"
+               [ngClass]="{'printerBroken': isPrinterBroken(selectedPrinter)}"
+    ></ng-select>
+  </div>
 
+
+  <div style="width: 250px; display: flex; flex-direction: column;">
+    <label for="selectDateInput" class="form-control-label mr-3">Wybierz datę</label>
+    <input type="text"
+           id="selectDateInput"
+           class="form-control"
+           [(ngModel)]="selectedDate"
+           placeholder="yyyy-mm-dd"
+           ngbDatepicker #startDate="ngbDatepicker"
+           (click)="startDate.toggle()"/>
+  </div>
+</section>
+
+<section>
+  <app-week-view [selectedDate]="convertFromNgbDate(selectedDate)" [printer]="selectedPrinter"></app-week-view>
+</section>
