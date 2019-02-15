@@ -1,11 +1,17 @@
 <div *ngIf="reservation" >
   <div class="technicalSpace"></div>
-    <div class="reservationBody" [ngStyle]="{ 'height': convertDurationToMins() +'px'}">
-        <p>NAZWA: {{reservation.name}}</p>
-        <p>CZAS DRUKOWANIA: {{reservation.duration}}h</p>
-        <p>UŻYTKOWNIK: {{reservation.user.mail}}</p>
-        <p><button class="btn btn-default">Usuń rezerwację <i class="fa fa-trash"></i></button></p>
-        <p><button class="btn btn-default">Skończyłem drukować <i class="fa fa-close"></i></button></p>
+    <div class="reservationBody" [ngStyle]="{ 'height': calculateHeight() +'px'}">
+        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}">NAZWA: {{reservation.name}}</p>
+        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}">CZAS DRUKOWANIA: {{reservation.duration}}h</p>
+        <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}">UŻYTKOWNIK: {{reservation.user.mail}}</p>
+        <p>
+          <button class="btn btn-default"
+          [ngStyle]="{ 'height': calculateSizeOfElements()*3 +'px', 'font-size': calculateSizeOfElements() +'px'}">
+            USUŃ <i class="fa fa-trash"></i></button></p>
+        <p>
+          <button class="btn btn-default"
+          [ngStyle]="{ 'height': calculateSizeOfElements()*3 +'px', 'font-size': calculateSizeOfElements() +'px'}">
+            ZAKOŃCZ <i class="fa fa-close"></i></button></p>
      </div>
     <div class="technicalSpace"></div>
 </div>

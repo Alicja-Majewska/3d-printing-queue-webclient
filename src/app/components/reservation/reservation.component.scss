@@ -6,17 +6,21 @@ background-size: 5px 5px;
 }
 
 .reservationBody {
-    background-color: #ffffff
+    background-color: #f3e9ee;
 }
-p{
-    height: auto;
-    min-height: 10px;
-
+p {
+     margin: 5px;
+     max-width: 0.1 wv;
 }
 
 .btn-default {
-    background-color: #e3e0cf;
-    height: auto;
-    min-height: 10px;
+     background-color: #e3e0cf;
+     width:auto;
+     height: auto;
+     margin: 5px;
+     text-align: center;
+     margin-top: 0;
+     white-space: normal;
+     overflow:hidden;
 
 }
