@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Reservation } from 'src/app/objects/Reservation';
 import { ReservationDataFactory } from 'src/app/data/ReservationDataFactory';
 import { ReservationBackend } from 'src/app/objects/ReservationBackend';
+import { HeightCalculatorService } from 'src/app/services/height-calculator.service';
 
 @Component({
   selector: 'app-reservation',
@@ -10,18 +11,25 @@ import { ReservationBackend } from 'src/app/objects/ReservationBackend';
 })
 export class ReservationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private heightCalculatorService: HeightCalculatorService) { }
 
   @Input()
   reservation: Reservation;
 
   ngOnInit() {
-    this.reservation = Reservation.fromBackend(ReservationDataFactory.getOne());
   }
 
-  convertDurationToMins(): number {
-    return this.reservation.duration*60;
+  calculateHeight(): number {
+    return this.heightCalculatorService.calculateHeightFromHours(this.reservation.duration);
   }
 
+  calculateSizeOfElements(): number { 
+    const scale = this.calculateHeight();
+    if (scale < 600) {
+      return  scale/ 16;
+    } else {
+      return 20;
+    }
+  }
 
 }
