@@ -19,9 +19,11 @@ export class SchedulerComponent implements OnInit {
   selectedPrinter: Printer;
 
   ngOnInit() {
-    this.printers = this.printerQueueService.fetchPrinters();
+    this.printerQueueService.fetchPrinters().subscribe(printers => {
+      this.printers = printers;
+      this.selectedPrinter = this.printers && this.printers.length > 1 && this.printers[0] || null;
+    });
     this.selectedDate = this.getDefaultDate();
-    this.selectedPrinter = this.printers && this.printers.length > 1 && this.printers[0] || null;
   }
 
   convertFromNgbDate(): Date {
@@ -34,6 +36,6 @@ export class SchedulerComponent implements OnInit {
   }
 
   isPrinterBroken(printer: Printer): boolean {
-    return printer.status == PrinterStatus.BROKEN;
+    return printer && printer.status == PrinterStatus.BROKEN;
   }
 }

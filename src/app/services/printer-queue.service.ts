@@ -4,17 +4,34 @@ import {PrintersDataFactory} from '../data/PrintersDataFactory';
 import {Reservation} from '../objects/Reservation';
 import {ReservationDataFactory} from '../data/ReservationDataFactory';
 import {NewReservation} from '../objects/NewReservation';
+import {HttpClient} from '@angular/common/http';
+import {PrinterBackend} from '../objects/PrinterBackend';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrinterQueueService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  fetchPrinters(): Printer[] {
-    return Printer.fromBackends(PrintersDataFactory.getMany());
+  fetchPrinters(): Observable<Printer[]> {
+    const url = 'query/printers';
+    const printers = this.http.get<PrinterBackend[]>(url).pipe(
+      map(
+        (printers: PrinterBackend[]) => {
+          console.log(printers);
+          console.log(Printer.fromBackends(printers));
+          return Printer.fromBackends(printers);
+        })
+    );
+
+    console.log(printers);
+    return printers;
+    // return of(Printer.fromBackends(PrintersDataFactory.getMany()));
   }
 
   fetchReservations(dateStart: Date, dateEnd: Date, printerId: string): Reservation[] {
@@ -22,6 +39,6 @@ export class PrinterQueueService {
   }
 
   addReservation(newReservation: NewReservation): void {
-    
+
   }
 }

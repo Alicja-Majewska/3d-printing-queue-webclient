@@ -9,7 +9,7 @@ import {TimeComperatorService} from '../../services/time-comperator.service';
   templateUrl: './week-view.component.html',
   styleUrls: ['./week-view.component.scss']
 })
-export class WeekViewComponent implements OnInit, OnChanges {
+export class WeekViewComponent implements OnChanges {
 
   static readonly MONDAY: number = 1;
   static readonly SUNDAY: number = 7;
@@ -29,11 +29,7 @@ export class WeekViewComponent implements OnInit, OnChanges {
   constructor(private printerQueueService: PrinterQueueService, private timeComparatorService: TimeComperatorService) {
   }
 
-  ngOnInit() {
-    const reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
-    this.daysInWeekOrdered = this.generateDaysInWeek();
-    this.sortReservations(reservations);
-  }
+
 
   private sortReservations(reservations: Reservation[]) {
     this.sortedReservations.clear();
@@ -53,7 +49,7 @@ export class WeekViewComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
 
     //TODO chain observables
-    const reservations = this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id);
+    const reservations = this.printer ? this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id) : [];
     this.daysInWeekOrdered = this.generateDaysInWeek();
     this.sortReservations(reservations);
   }

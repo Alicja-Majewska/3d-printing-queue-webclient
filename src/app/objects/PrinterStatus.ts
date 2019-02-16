@@ -1,5 +1,5 @@
 export enum PrinterStatus {
-  WORKING = "WORKING", BROKEN = "BROKEN"
+  ACTIVE = "ACTIVE", BROKEN = "BROKEN"
 }
 
 export namespace PrinterStatus {

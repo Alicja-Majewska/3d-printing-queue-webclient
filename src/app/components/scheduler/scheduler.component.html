@@ -1,5 +1,5 @@
 <section class="m-4" style="display: flex; flex: auto;flex-direction: row; flex-wrap: wrap">
-  <div class="pr-5 flex-column mt-4">
+  <div class="mr-4 flex-column mt-4 " style="width: 400px">
     <label class="form-control-label">Wybierz drukarkę</label>
     <ng-select [items]="printers"
                bindLabel="name"
@@ -22,7 +22,7 @@
   </div>
 
   <div class="mt-4">
-    <app-reservation-creator [printerId]="selectedPrinter.id" [selectedDate]="convertFromNgbDate(selectedDate)"></app-reservation-creator>
+    <app-reservation-creator [printerId]="selectedPrinter?.id" [selectedDate]="convertFromNgbDate(selectedDate)"></app-reservation-creator>
   </div>
 </section>
 

@@ -1,5 +1,5 @@
 <form (ngSubmit)="addReservation()" [formGroup]="reservationForm" style="display: flex; flex-direction: row">
-  <div class="flex-column mr-5" formGroupName="startDateTime">
+  <div class="flex-column mr-4" formGroupName="startDateTime">
     <label class="form-control-label">Godzina startu</label>
     <ngb-timepicker formControlName="time" [spinners]="false"></ngb-timepicker>
     <app-validation-errors [formField]="findFormField('startDateTime.time')"></app-validation-errors>
