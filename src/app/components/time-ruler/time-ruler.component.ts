@@ -27,6 +27,7 @@ export class TimeRulerComponent implements OnInit {
         timeSlices.push(this.buildTimeSlice(hour, minutes));
       }
     }
+    timeSlices.push(this.buildTimeSlice(TimeComperatorService.END_HOUR, 0));
     return timeSlices;
   }
 
