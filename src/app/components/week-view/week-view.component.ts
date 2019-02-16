@@ -11,6 +11,9 @@ import {TimeComperatorService} from '../../services/time-comperator.service';
 })
 export class WeekViewComponent implements OnInit, OnChanges {
 
+  static readonly MONDAY: number = 1;
+  static readonly SUNDAY: number = 7;
+
 
   @Input()
   printer: Printer;
@@ -42,13 +45,8 @@ export class WeekViewComponent implements OnInit, OnChanges {
   findReservationFromDate(reservations: Reservation[], currentDate): Reservation[] {
     return reservations.filter(reservation =>
     this.timeComparatorService.haveDatesTheSameDay(reservation.startDate, currentDate)
-    || this.isStartBeforeCurrentDateAndStopAfterCurrentDate(currentDate, reservation.startDate, reservation.stopDate)
+    || this.timeComparatorService.isCurrentDateBetweenStartAndStopDates(currentDate, reservation.startDate, reservation.stopDate)
     || this.timeComparatorService.haveDatesTheSameDay(reservation.stopDate, currentDate));
-  }
-
-
-  isStartBeforeCurrentDateAndStopAfterCurrentDate(currentDate: Date, startDate: Date, stopDate: Date) {
-    return startDate.getTime() < currentDate.getTime() && currentDate.getTime() < stopDate.getTime();
   }
 
 
@@ -71,16 +69,13 @@ export class WeekViewComponent implements OnInit, OnChanges {
   }
 
   getReservationsForDay(day: Date): Reservation[] {
-    return this.sortedReservations && this.sortedReservations .get(day) || [];
+    return this.sortedReservations && this.sortedReservations.get(day) || [];
   }
 
   private findDaysAfter(): Date[] {
     const daysAfter: Date[] = [];
-    let dayOfWeek = this.selectedDate.getDay();
-    if (dayOfWeek === 0) {
-      dayOfWeek = 7;
-    }
-    for (let i = 1; dayOfWeek + i <= 7; ++i) {
+    const selectedDayOfWeek = this.getDayOfWeek(this.selectedDate);
+    for (let i = WeekViewComponent.MONDAY; selectedDayOfWeek + i <= WeekViewComponent.SUNDAY; ++i) {
       const dateAfter = new Date(this.selectedDate);
       dateAfter.setDate(dateAfter.getDate() + i);
       daysAfter.push(dateAfter);
@@ -88,14 +83,18 @@ export class WeekViewComponent implements OnInit, OnChanges {
     return daysAfter;
   }
 
+  private getDayOfWeek(date: Date): number {
+    let dayOfWeek = date.getDay();
+    if (dayOfWeek === 0) {
+      dayOfWeek = WeekViewComponent.SUNDAY;
+    }
+    return dayOfWeek;
+  }
 
   private findDaysBefore(): Date[] {
     const daysBefore: Date[] = [];
-    let dayOfWeek = this.selectedDate.getDay();
-    if (dayOfWeek === 0) {
-      dayOfWeek = 7;
-    }
-    for (let i = dayOfWeek - 1; i > 0; --i) {
+    const selectedDayOfWeek = this.getDayOfWeek(this.selectedDate);
+    for (let i = selectedDayOfWeek - 1; i > 0; --i) {
       const dateBefore = new Date(this.selectedDate);
       dateBefore.setDate(dateBefore.getDate() - i);
       daysBefore.push(dateBefore);
@@ -103,9 +102,7 @@ export class WeekViewComponent implements OnInit, OnChanges {
     return daysBefore;
   }
 
-
-
-  getDayOfWeek(date: Date): string {
+  getNameOfWeekDay(date: Date): string {
     switch (date.getDay()) {
       case 1:
         return "Poniedziałek";

@@ -28,8 +28,7 @@ export class DayViewComponent implements OnInit {
     }
     const hours = reservation.startDate.getHours() - TimeComperatorService.START_HOUR;
     const minutes = reservation.startDate.getMinutes();
-    var heightFromHoursAndMinutes = this.heightCalculatorService.calculateHeightFromHoursAndMinutes(hours, minutes);
-      return heightFromHoursAndMinutes;
+    return this.heightCalculatorService.calculateHeightFromHoursAndMinutes(hours, minutes);
   }
 
 }

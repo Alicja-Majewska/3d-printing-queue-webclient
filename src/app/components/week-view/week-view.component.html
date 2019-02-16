@@ -4,7 +4,7 @@
   </div>
 
   <div *ngFor="let day of daysInWeekOrdered" style="width: 14%; border-left: solid #bbb4bc 1px">
-    <div class="pl-3">{{getDayOfWeek(day)}}</div>
+    <div class="pl-3">{{getNameOfWeekDay(day)}}</div>
     <div class="pl-3">{{day | date:'shortDate' }}</div>
     <hr>
     <app-day-view [date]="day" [reservations]="getReservationsForDay(day)"></app-day-view>

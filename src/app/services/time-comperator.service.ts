@@ -12,6 +12,11 @@ export class TimeComperatorService {
   constructor() {
   }
 
+  isCurrentDateBetweenStartAndStopDates(currentDate: Date, startDate: Date, stopDate: Date) {
+    return this.isStartBeforeCurrentDate(currentDate, startDate)
+      && this.isStopAfterCurrentDate(currentDate, stopDate);
+  }
+
   isStartBeforeCurrentDate(currentDate: Date, startDate: Date): boolean {
     return startDate.getTime() < currentDate.getTime();
   }
