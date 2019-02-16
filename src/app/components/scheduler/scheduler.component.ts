@@ -18,16 +18,22 @@ export class SchedulerComponent implements OnInit {
   printers: Printer[];
   selectedPrinter: Printer;
 
-  convertFromNgbDate() : Date {
-    return this.selectedDate && new Date(this.selectedDate.year, this.selectedDate.month - 1, this.selectedDate.day) || new Date();
-  }
-
   ngOnInit() {
     this.printers = this.printerQueueService.fetchPrinters();
+    this.selectedDate = this.getDefaultDate();
     this.selectedPrinter = this.printers && this.printers.length > 1 && this.printers[0] || null;
   }
 
-  isPrinterBroken(printer: Printer) : boolean {
+  convertFromNgbDate(): Date {
+    return this.selectedDate && new Date(this.selectedDate.year, this.selectedDate.month - 1, this.selectedDate.day) || new Date();
+  }
+
+  getDefaultDate(): NgbDate {
+    const now = new Date();
+    return new NgbDate(now.getFullYear(), now.getMonth() + 1, now.getDate());
+  }
+
+  isPrinterBroken(printer: Printer): boolean {
     return printer.status == PrinterStatus.BROKEN;
   }
 }

@@ -3,6 +3,7 @@ import {Printer} from '../objects/Printer';
 import {PrintersDataFactory} from '../data/PrintersDataFactory';
 import {Reservation} from '../objects/Reservation';
 import {ReservationDataFactory} from '../data/ReservationDataFactory';
+import {NewReservation} from '../objects/NewReservation';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class PrinterQueueService {
     return Reservation.fromBackends(ReservationDataFactory.getMany());
   }
 
-  addReservation(): void {
-
+  addReservation(newReservation: NewReservation): void {
+    
   }
 }

@@ -12,6 +12,7 @@ import { DayViewComponent } from './components/day-view/day-view.component';
 import { TimeRulerComponent } from './components/time-ruler/time-ruler.component';
 import { ReservationCreatorComponent } from './components/reservation-creator/reservation-creator.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ValidationErrorsComponent } from './components/validation-errors/validation-errors.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     DayViewComponent,
     TimeRulerComponent,
     ReservationCreatorComponent,
+    ValidationErrorsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<div *ngIf="shouldShowError()">
+  <div *ngFor="let errorName of validationErrorNames" class=" mt-1 mb-1">
+
+    <p *ngIf="errorName === 'required'">
+      Pole jest obowiązkowe
+    </p>
+    <p *ngIf="errorName === 'minlength'">
+      Zbyt krótka nazwa
+    </p>
+    <p *ngIf="errorName === 'min'">
+      Wartość jest zbyt mała
+    </p>
+
+  </div>
+</div>

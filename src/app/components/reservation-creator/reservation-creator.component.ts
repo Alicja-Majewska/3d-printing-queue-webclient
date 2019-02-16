@@ -2,6 +2,8 @@ import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core'
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrinterQueueService} from '../../services/printer-queue.service';
 import {cloneDeep} from 'lodash';
+import {NewReservation} from '../../objects/NewReservation';
+import {UserDataFactory} from '../../data/UserDataFactory';
 
 
 @Component({
@@ -20,40 +22,48 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
   selectedDate: string;
 
   constructor(private fb: FormBuilder, private printerQueueService: PrinterQueueService) {
-
   }
 
   ngOnInit() {
     this.reservationForm = this.buildForm();
-    console.log(this.reservationForm);
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-    if (this.reservationForm)
+    if (this.reservationForm) {
+      this.reservationForm.get('printerId').setValue(this.printerId);
       this.reservationForm.get('startDateTime').patchValue({
         date: this.selectedDate
       });
-    console.log(this.reservationForm);
+    }
   }
 
-
-  // this.templateForm.patchValue({
-//   name: this.template.name,
-//   startDate: this.ngbDateConverter.getNgbDate(this.template.startDate),
-//   endDate: this.ngbDateConverter.getNgbDate(this.template.endDate),
-//   templateDescription: this.template.description,
-// });
   addReservation() {
     if (this.reservationForm.valid) {
-      const reservation = cloneDeep(this.reservationForm.value);
-      console.log(reservation);
+      const newReservation = this.createNewReservationFromForm();
+      this.printerQueueService.addReservation(addReservation);
+      console.log(newReservation);
     }
+  }
+
+  private createNewReservationFromForm(): NewReservation {
+    const reservation = cloneDeep(this.reservationForm.value);
+    const startDateWithTime = this.mergeDateAndTime(reservation);
+    const staticUser = UserDataFactory.getOne();
+    const newReservation = new NewReservation(reservation.printerId, reservation.name, reservation.duration, startDateWithTime, staticUser.id);
+    return newReservation;
+  }
+
+  private mergeDateAndTime(reservation: any): Date {
+    const startDateWithTime = reservation.startDateTime.date;
+    startDateWithTime.setHours(reservation.startDateTime.time.hour);
+    startDateWithTime.setMinutes(reservation.startDateTime.time.minute);
+    return startDateWithTime;
   }
 
   private buildForm(): FormGroup {
     return this.fb.group({
-      name: ['', Validators.required],
-      duration: [2, Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+      duration: [2, [Validators.required, Validators.min(1), Validators.max(50)]],
       printerId: [this.printerId, Validators.required],
       startDateTime: this.fb.group({
         time: ['', Validators.required],
@@ -61,4 +71,9 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
       })
     })
   }
+
+  findFormField(name: string) {
+    return this.reservationForm.get(name);
+  }
+
 }
