@@ -1,0 +1,32 @@
+<section container="body">
+
+  <div class="modal-header " style="background-color: lightgrey">
+    <h5 class="white">Dodaj drukarkę</h5>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()" role="button">
+      <i class="fa fa-times-circle white pr-2" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <form (ngSubmit)="accept()" [formGroup]="printerForm">
+    <div class="modal-body pl-5 pr-5">
+
+      <div class="pt-4 form-group">
+        <label for="printerName">Nazwa drukarki</label>
+        <input type="text" formControlName="name" class="form-control" id="printerName"
+               placeholder="3D Printer BG-6">
+        <app-validation-errors [formField]="findFormField('name')"></app-validation-errors>
+      </div>
+    </div>
+
+    <div class="modal-footer pt-4 pr-5 pb-4">
+      <button [disabled]="printerForm.invalid" class="btn btn-success pl-3 pr-3 mr-3" type="submit" (click)="accept()"
+      >Zapisz
+      </button>
+      <button (click)="decline()" class="btn btn-secondary pl-3 pr-3">Anuluj</button>
+    </div>
+
+  </form>
+</section>
+
+
+

@@ -38,4 +38,6 @@ export class SchedulerComponent implements OnInit {
   isPrinterBroken(printer: Printer): boolean {
     return printer && printer.status == PrinterStatus.BROKEN;
   }
+
+ 
 }

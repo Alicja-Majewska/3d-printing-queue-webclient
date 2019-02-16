@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Reservation } from 'src/app/objects/Reservation';
-import { HeightCalculatorService } from 'src/app/services/height-calculator.service';
-import { TimeComperatorService } from 'src/app/services/time-comperator.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {Reservation} from 'src/app/objects/Reservation';
+import {HeightCalculatorService} from 'src/app/services/height-calculator.service';
+import {TimeComperatorService} from 'src/app/services/time-comperator.service';
 
 @Component({
   selector: 'app-reservation',
@@ -11,7 +11,8 @@ import { TimeComperatorService } from 'src/app/services/time-comperator.service'
 export class ReservationComponent implements OnInit {
 
   constructor(private heightCalculatorService: HeightCalculatorService,
-    private timeComperatorService: TimeComperatorService) { }
+              private timeComperatorService: TimeComperatorService) {
+  }
 
   @Input()
   reservation: Reservation;
@@ -30,7 +31,7 @@ export class ReservationComponent implements OnInit {
   }
 
   calculateTechnicalBreakHeight(): number {
-    return this.reservation.technicalBreak*HeightCalculatorService.PIXEL_TO_MINUTE_RATIO;
+    return Math.ceil(this.reservation.technicalBreak * HeightCalculatorService.PIXEL_TO_MINUTE_RATIO);
   }
 
   private calculateHeightForSpecifiedDay(): number {
@@ -42,16 +43,16 @@ export class ReservationComponent implements OnInit {
     endHourDate.setHours(TimeComperatorService.END_HOUR);
 
     if (this.isReservationStartedThisDay()) {
-    return (this.heightCalculatorService.calculateHeightFromMinutes(this.calculateMinutes(endHourDate, this.reservation.startDate))-this.calculateTechnicalBreakHeight());
+      return (this.heightCalculatorService.calculateHeightFromMinutes(this.calculateMinutes(endHourDate, this.reservation.startDate)) - this.calculateTechnicalBreakHeight());
     } else if (this.isReservationStoppedThisDay()) {
-      return this.heightCalculatorService.calculateHeightFromMinutes(this.calculateMinutes(this.reservation.stopDate, startHourDate) -this.calculateTechnicalBreakHeight());
+      return this.heightCalculatorService.calculateHeightFromMinutes(this.calculateMinutes(this.reservation.stopDate, startHourDate) - this.calculateTechnicalBreakHeight());
     } else {
-      return this.heightCalculatorService.calculateHeightFromHours(this.calculateHours(TimeComperatorService.END_HOUR,TimeComperatorService.START_HOUR))
+      return this.heightCalculatorService.calculateHeightFromHours(this.calculateHours(TimeComperatorService.END_HOUR, TimeComperatorService.START_HOUR))
 
     }
   }
 
-copyDate(date: Date): Date {
+  copyDate(date: Date): Date {
     let newDate = new Date();
     newDate.setDate(date.getDate());
     newDate.setMinutes(0);
@@ -59,26 +60,26 @@ copyDate(date: Date): Date {
     return newDate;
   }
 
-  private calculateHours(startHour: number, stopHour:number): number {
-    return startHour-stopHour;
+  private calculateHours(startHour: number, stopHour: number): number {
+    return startHour - stopHour;
   }
 
   private calculateMinutes(startDate: Date, stopDate: Date): number {
-    return (startDate.getTime()-stopDate.getTime())/HeightCalculatorService.MILISEC_IN_MINUTE;
+    return Math.ceil((startDate.getTime() - stopDate.getTime()) / HeightCalculatorService.MILISEC_IN_MINUTE);
   }
 
-  calculateSizeOfElements(): number { 
+  calculateSizeOfElements(): number {
     const scale = this.calculateReservationHeight();
     if (scale < 600) {
-      return  scale/ 16;
+      return Math.ceil(scale / 16);
     } else {
       return 20;
     }
   }
 
   canReservationBeDeleted(): boolean {
-   return this.timeComperatorService.isStartAfterCurrentDate(new Date(), this.reservation.startDate)
-   && this.timeComperatorService.isStopAfterCurrentDate(new Date(), this.reservation.stopDate);
+    return this.timeComperatorService.isStartAfterCurrentDate(new Date(), this.reservation.startDate)
+      && this.timeComperatorService.isStopAfterCurrentDate(new Date(), this.reservation.stopDate);
   }
 
   canReservationBeStopped(): boolean {

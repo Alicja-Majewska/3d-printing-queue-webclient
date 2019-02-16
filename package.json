@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o--host 0.0.0.0",
+    "start": "ng serve -o --host 0.0.0.0",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,7 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
+    "guid-typescript": "^1.0.9",
     "lodash": "^4.17.11",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

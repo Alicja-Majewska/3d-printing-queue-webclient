@@ -1,32 +1,32 @@
-import { UserEnum } from './UserEnum';
+import {UserEnum} from './UserEnum';
 
 export class User {
-  
-    private _id: string;
-    private _name: string;
-    private _surname: string;
-    private _mail: string;
-    private _role: UserEnum;
 
-    get id(): string {
-        return this._id;
-    }
+  private _id: string;
+  private _name: string;
+  private _surname: string;
+  private _mail: string;
+  private _role: UserEnum;
 
-    public get name(): string {
-        return this._name;
-    }
+  get id(): string {
+    return this._id;
+  }
 
-    public get surname(): string {
-        return this._surname;
-    }
+  public get name(): string {
+    return this._name;
+  }
 
-    public get mail(): string {
-        return this._mail;
-    }
+  public get surname(): string {
+    return this._surname;
+  }
 
-    public get role(): UserEnum {
-        return this._role;
-    }
+  public get mail(): string {
+    return this._mail;
+  }
+
+  public get role(): UserEnum {
+    return this._role;
+  }
 
 }
 

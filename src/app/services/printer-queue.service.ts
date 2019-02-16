@@ -19,16 +19,16 @@ export class PrinterQueueService {
   }
 
   fetchPrinters(): Observable<Printer[]> {
-    const url = 'query/printers';
-    const printers = this.http.get<PrinterBackend[]>(url).pipe(
-      map(
-        (printers: PrinterBackend[]) => {
-          return Printer.fromBackends(printers);
-        })
-    );
-
-    return printers;
-    // return of(Printer.fromBackends(PrintersDataFactory.getMany()));
+    // const url = 'query/printers';
+    // const printers = this.http.get<PrinterBackend[]>(url).pipe(
+    //   map(
+    //     (printers: PrinterBackend[]) => {
+    //       return Printer.fromBackends(printers);
+    //     })
+    // );
+    //
+    // return printers;
+    return of(Printer.fromBackends(PrintersDataFactory.getMany()));
   }
 
   fetchReservations(dateStart: Date, dateEnd: Date, printerId: string): Reservation[] {

@@ -7,8 +7,14 @@
     <p *ngIf="errorName === 'minlength'">
       Zbyt krótka nazwa
     </p>
+    <p *ngIf="errorName === 'maxlength'">
+      Zbyt długa nazwa
+    </p>
     <p *ngIf="errorName === 'min'">
       Wartość jest zbyt mała
+    </p>
+    <p *ngIf="errorName === 'max'">
+      Wartość jest zbyt duża
     </p>
 
   </div>

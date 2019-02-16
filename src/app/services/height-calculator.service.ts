@@ -21,8 +21,7 @@ export class HeightCalculatorService {
   }
 
   calculateHeightFromHoursAndMinutes(hours: number, minutes: number): number {
-    var result = this.calculateHeightFromHours(hours) + this.calculateHeightFromMinutes(minutes);
-    return result;
+    return this.calculateHeightFromHours(hours) + this.calculateHeightFromMinutes(minutes);
   }
 
 }

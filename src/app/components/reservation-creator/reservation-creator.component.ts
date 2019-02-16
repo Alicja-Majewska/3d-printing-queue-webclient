@@ -4,6 +4,7 @@ import {PrinterQueueService} from '../../services/printer-queue.service';
 import {cloneDeep} from 'lodash';
 import {NewReservation} from '../../objects/NewReservation';
 import {UserDataFactory} from '../../data/UserDataFactory';
+import { Guid } from "guid-typescript";
 
 
 @Component({
@@ -38,6 +39,7 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
   }
 
   addReservation() {
+    console.log(this.reservationForm);
     if (this.reservationForm.valid) {
       const newReservation = this.createNewReservationFromForm();
       this.printerQueueService.addReservation(newReservation);
@@ -49,7 +51,8 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
     const reservation = cloneDeep(this.reservationForm.value);
     const startDateWithTime = this.mergeDateAndTime(reservation);
     const staticUser = UserDataFactory.getOne();
-    const newReservation = new NewReservation(reservation.printerId, reservation.name, reservation.duration, startDateWithTime, staticUser.id);
+    const guid = Guid.create().toString();
+    const newReservation = new NewReservation(reservation.printerId, reservation.name, <number> reservation.duration, startDateWithTime, staticUser.id, guid);
     return newReservation;
   }
 

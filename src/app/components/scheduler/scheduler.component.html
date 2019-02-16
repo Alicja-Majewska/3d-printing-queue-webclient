@@ -1,5 +1,5 @@
 <section class="m-4" style="display: flex; flex: auto;flex-direction: row; flex-wrap: wrap">
-  <div class="mr-4 flex-column mt-4 " style="width: 400px">
+  <div class="mr-2 flex-column mt-4 " style="width: 400px">
     <label class="form-control-label">Wybierz drukarkę</label>
     <ng-select [items]="printers"
                bindLabel="name"
@@ -8,6 +8,9 @@
                [searchable]="false"
                [ngClass]="{'printerBroken': isPrinterBroken(selectedPrinter)}"
     ></ng-select>
+  </div>
+  <div class="mr-4 mt-4" style="flex-direction: column; display: flex; justify-content: flex-end; border: 0">
+    <app-add-printer></app-add-printer>
   </div>
 
   <div class="flex-column mr-2 mt-4" style="width: 250px">
