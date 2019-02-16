@@ -9,6 +9,7 @@ import {map, catchError} from 'rxjs/operators';
 import {PrinterBackend} from '../objects/PrinterBackend';
 import {DatePipe} from '@angular/common';
 import {ReservationBackend} from '../objects/ReservationBackend';
+import {PrintersDataFactory} from '../data/PrintersDataFactory';
 import {ReservationDataFactory} from '../data/ReservationDataFactory';
 
 @Injectable({
