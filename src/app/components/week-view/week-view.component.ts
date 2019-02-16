@@ -3,6 +3,7 @@ import {PrinterQueueService} from '../../services/printer-queue.service';
 import {Reservation} from '../../objects/Reservation';
 import {Printer} from '../../objects/Printer';
 import {TimeComperatorService} from '../../services/time-comperator.service';
+import {OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-week-view',
