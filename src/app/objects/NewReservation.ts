@@ -5,18 +5,18 @@ export class NewReservation {
   private _guid: string;
   private _printerId: string;
   private _name: string;
-  private _duration: number;
+  private _durationInMinutes: number;
   private _startDate: Date;
-  private _userId: string;
+  private _ownerId: string;
 
 
-  constructor(printerId: string, name: string, duration: number, startDate: Date, userId: string, guid: string) {
+  constructor(printerId: string, name: string, durationInMinutes: number, startDate: Date, ownerId: string, guid: string) {
     this._guid = guid;
     this._printerId = printerId;
     this._name = name;
-    this._duration = duration;
+    this._durationInMinutes = durationInMinutes;
     this._startDate = startDate;
-    this._userId = userId;
+    this._ownerId = ownerId;
   }
 
   toBackend(): NewReservationBackend {
@@ -24,9 +24,9 @@ export class NewReservation {
       guid: this._guid,
       printerId: this._printerId,
       name: this._name,
-      duration: this._duration,
+      durationInMinutes: this._durationInMinutes,
       startDate: this._startDate.toISOString(),
-      userId: this._userId
+      ownerId: this._ownerId
     }
   }
 

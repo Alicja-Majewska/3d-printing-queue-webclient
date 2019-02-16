@@ -52,7 +52,8 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
     const startDateWithTime = this.mergeDateAndTime(reservation);
     const staticUser = UserDataFactory.getOne();
     const guid = Guid.create().toString();
-    const newReservation = new NewReservation(reservation.printerId, reservation.name, <number> reservation.duration, startDateWithTime, staticUser.id, guid);
+    const durationInMinutes = Math.ceil(reservation.duration * 60);
+    const newReservation = new NewReservation(reservation.printerId, reservation.name, durationInMinutes, startDateWithTime, staticUser.id, guid);
     return newReservation;
   }
 

@@ -9,7 +9,8 @@ export class AddHeaderInterceptor implements HttpInterceptor {
 
     request = request.clone({
       setHeaders: {
-         'Access-Control-Allow-Origin': "*"
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     });
     return next.handle(request);

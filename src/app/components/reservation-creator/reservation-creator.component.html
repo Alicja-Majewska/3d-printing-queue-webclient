@@ -1,4 +1,4 @@
-<form (ngSubmit)="addReservation()" [formGroup]="reservationForm" style="display: flex; flex-direction: row">
+<form (ngSubmit)="addReservation()" [formGroup]="reservationForm" style="display: flex; flex-direction: row; flex-wrap: wrap">
   <div class="flex-column mr-4" formGroupName="startDateTime">
     <label class="form-control-label">Godzina startu</label>
     <ngb-timepicker formControlName="time" [spinners]="false"></ngb-timepicker>

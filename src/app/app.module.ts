@@ -17,6 +17,7 @@ import {AddFullUrlInterceptor} from './interceptors/AddFullUrlInterceptor';
 import {AddHeaderInterceptor} from './interceptors/AddHeaderInterceptor';
 import { AddPrinterComponent } from './components/add-printer/add-printer.component';
 import { PrinterCreatorComponent } from './components/printer-creator/printer-creator.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PrinterCreatorComponent } from './components/printer-creator/printer-cr
     PrinterCreatorComponent
   ],
   providers: [
+    DatePipe,
     {provide: HTTP_INTERCEPTORS, useClass: AddFullUrlInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true}
   ],

@@ -2,7 +2,7 @@ export interface NewReservationBackend {
   guid: string;
   printerId: string;
   name: string;
-  duration: number;
+  durationInMinutes: number;
   startDate: string;
-  userId: string;
+  ownerId: string;
 }

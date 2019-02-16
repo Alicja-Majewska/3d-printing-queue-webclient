@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {PrinterQueueService} from '../../services/printer-queue.service';
 import {Reservation} from '../../objects/Reservation';
 import {Printer} from '../../objects/Printer';
@@ -9,7 +9,7 @@ import {TimeComperatorService} from '../../services/time-comperator.service';
   templateUrl: './week-view.component.html',
   styleUrls: ['./week-view.component.scss']
 })
-export class WeekViewComponent implements OnChanges {
+export class WeekViewComponent implements OnChanges, OnInit {
 
   static readonly MONDAY: number = 1;
   static readonly SUNDAY: number = 7;
@@ -30,7 +30,6 @@ export class WeekViewComponent implements OnChanges {
   }
 
 
-
   private sortReservations(reservations: Reservation[]) {
     this.sortedReservations.clear();
     this.daysInWeekOrdered.forEach(date => {
@@ -46,12 +45,27 @@ export class WeekViewComponent implements OnChanges {
   }
 
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnInit(): void {
+    this.reloadData();
+  }
 
-    //TODO chain observables
-    const reservations = this.printer ? this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id) : [];
-    this.daysInWeekOrdered = this.generateDaysInWeek();
-    this.sortReservations(reservations);
+  private reloadData(){
+      this.daysInWeekOrdered = this.generateDaysInWeek();
+      this.startOfWeek = this.daysInWeekOrdered[0];
+      this.endOfWeek = this.daysInWeekOrdered[6];
+
+      if (this.printer && this.printer.id) {
+        this.printerQueueService.fetchReservations(this.startOfWeek, this.endOfWeek, this.printer.id)
+          .subscribe(reservation => {
+              const reservations = reservation;
+              this.sortReservations(reservations);
+                      }
+                  )
+          }
+      }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.reloadData();
   }
 
   generateDaysInWeek(): Date[] {
