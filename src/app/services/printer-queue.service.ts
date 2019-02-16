@@ -23,13 +23,10 @@ export class PrinterQueueService {
     const printers = this.http.get<PrinterBackend[]>(url).pipe(
       map(
         (printers: PrinterBackend[]) => {
-          console.log(printers);
-          console.log(Printer.fromBackends(printers));
           return Printer.fromBackends(printers);
         })
     );
 
-    console.log(printers);
     return printers;
     // return of(Printer.fromBackends(PrintersDataFactory.getMany()));
   }
