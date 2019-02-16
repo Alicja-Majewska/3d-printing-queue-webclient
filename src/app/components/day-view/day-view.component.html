@@ -1,6 +1,6 @@
 <section>
   <div *ngFor="let reservation of reservations" style="position: relative" class="m-2 flex-column">
-    <app-reservation [reservation]="reservation" style="position: absolute; max-width: 100%"
+    <app-reservation [date]="date" [reservation]="reservation" style="position: absolute; max-width: 100%"
                      [ngStyle]="{'top.px': calculateOffset(reservation) }"></app-reservation>
   </div>
 </section>

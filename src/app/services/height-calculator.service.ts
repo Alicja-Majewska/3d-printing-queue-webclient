@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 export class HeightCalculatorService {
 
   static readonly MINUTES_IN_HOUR = 60;
+  static readonly MILISEC_IN_MINUTE = 60000;
   static readonly PIXEL_TO_MINUTE_RATIO = 2;
 
   constructor() {

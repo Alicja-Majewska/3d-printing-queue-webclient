@@ -9,6 +9,7 @@ export class Reservation {
   private _stopDate: Date;
   private _type: string;
   private _user: User;
+  private _technicalBreak: number;
 
   static fromBackend(reservationBackend: ReservationBackend): Reservation {
     const reservation: Reservation = new Reservation();
@@ -19,6 +20,7 @@ export class Reservation {
     reservation._stopDate = new Date(reservationBackend.stopDate);
     reservation._type = reservationBackend.type;
     reservation._user = reservationBackend.user;
+    reservation._technicalBreak = reservationBackend.technicalBreak;
 
     return reservation;
   }
@@ -53,6 +55,10 @@ export class Reservation {
 
   public get user(): User {
     return this._user;
+  }
+
+  public get technicalBreak(): number {
+    return this._technicalBreak;
   }
 
 }

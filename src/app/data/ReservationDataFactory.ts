@@ -9,9 +9,10 @@ export class ReservationDataFactory {
       name: "Pierwsze drukowanie",
       duration: 3,
       startDate: new Date('2019-02-15T13:30:00').toISOString(),
-      stopDate: new Date('2019-02-15T16:30:00').toISOString(),
+      stopDate: new Date('2019-02-15T17:00:00').toISOString(),
       type: "PRINTING",
       user: UserDataFactory.getOne(),
+      technicalBreak: 15,
     }
   }
 
@@ -24,6 +25,7 @@ export class ReservationDataFactory {
       stopDate: new Date('2019-02-15T14:30:00').toISOString(),
       type: "PRINTING",
       user: UserDataFactory.getOne(),
+      technicalBreak: 15,
     },
       <ReservationBackend> {
         id: '2',
@@ -33,6 +35,7 @@ export class ReservationDataFactory {
         stopDate: new Date('2019-02-14T16:00:00').toISOString(),
         type: "PRINTING",
         user: UserDataFactory.getOne(),
+        technicalBreak: 15,
       },
       <ReservationBackend> {
         id: '3',
@@ -42,15 +45,17 @@ export class ReservationDataFactory {
         stopDate: new Date('2019-02-12T16:00:00').toISOString(),
         type: "PRINTING",
         user: UserDataFactory.getOne(),
+        technicalBreak: 15,
       },
       <ReservationBackend> {
         id: '4',
         name: "Czwarte drukowanie",
         duration: 50,
         startDate: new Date('2019-02-15T14:30:00').toISOString(),
-        stopDate: new Date('2019-02-17T16:00:00').toISOString(),
+        stopDate: new Date('2019-02-17T17:00:00').toISOString(),
         type: "PRINTING",
         user: UserDataFactory.getOne(),
+        technicalBreak: 15,
       }
     ]
   }

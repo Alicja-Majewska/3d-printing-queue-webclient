@@ -8,4 +8,5 @@ export interface ReservationBackend {
     stopDate: string;
     type: string;
     user: User;
+    technicalBreak: number;
 }

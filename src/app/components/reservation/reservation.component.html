@@ -1,6 +1,7 @@
 <div *ngIf="reservation" >
-  <div class="technicalSpace"></div>
-    <div class="label label-default" [ngStyle]="{ 'height': calculateHeight() +'px'}">
+  <div *ngIf="isReservationStartedThisDay()" class="technicalSpace" [ngStyle]="{'height': calculateTechnicalBreakHeight() + 'px'}"></div>
+  <div class="label label-default" 
+    [ngStyle]="{ 'height': calculateReservationHeight() +'px'}">
         <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}"><b>NAZWA: </b>{{reservation.name}}</p>
         <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}"><b>CZAS DRUKOWANIA: </b>{{reservation.duration}}h</p>
         <p [ngStyle]="{ 'font-size': calculateSizeOfElements() +'px'}"><b>UŻYTKOWNIK: </b>{{reservation.user.mail}}</p>
@@ -12,7 +13,7 @@
           <button *ngIf="canReservationBeStopped()" class="btn btn-default"
           [ngStyle]="{'height': calculateSizeOfElements()*3 +'px', 'font-size': calculateSizeOfElements() +'px'}">
             ZAKOŃCZ <i class="fa fa-close"></i></button></p>
-     </div>
-    <div class="technicalSpace"></div>
+    </div>
+    <div *ngIf="isReservationStoppedThisDay()" class="technicalSpace" [ngStyle]="{'height': calculateTechnicalBreakHeight() + 'px'}"></div>
 </div>
 

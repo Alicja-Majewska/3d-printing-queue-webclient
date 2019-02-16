@@ -16,15 +16,59 @@ export class ReservationComponent implements OnInit {
   @Input()
   reservation: Reservation;
 
+  @Input()
+  date: Date;
+
   ngOnInit() {
   }
 
-  calculateHeight(): number {
+  calculateReservationHeight(): number {
+    if (!this.timeComperatorService.haveDatesTheSameDay(this.reservation.startDate, this.reservation.stopDate)) {
+      return this.calculateHeightForSpecifiedDay();
+    }
     return this.heightCalculatorService.calculateHeightFromHours(this.reservation.duration);
   }
 
+  calculateTechnicalBreakHeight(): number {
+    return this.reservation.technicalBreak*HeightCalculatorService.PIXEL_TO_MINUTE_RATIO;
+  }
+
+  private calculateHeightForSpecifiedDay(): number {
+    let startDate = this.reservation.startDate;
+    let stopDate = this.reservation.stopDate;
+    let startHourDate = this.copyDate(stopDate);
+    startHourDate.setHours(TimeComperatorService.START_HOUR);
+    let endHourDate = this.copyDate(startDate);
+    endHourDate.setHours(TimeComperatorService.END_HOUR);
+
+    if (this.isReservationStartedThisDay()) {
+    return (this.heightCalculatorService.calculateHeightFromMinutes(this.calculateMinutes(endHourDate, this.reservation.startDate))-this.calculateTechnicalBreakHeight());
+    } else if (this.isReservationStoppedThisDay()) {
+      return this.heightCalculatorService.calculateHeightFromMinutes(this.calculateMinutes(this.reservation.stopDate, startHourDate) -this.calculateTechnicalBreakHeight());
+    } else {
+      return this.heightCalculatorService.calculateHeightFromHours(this.calculateHours(TimeComperatorService.END_HOUR,TimeComperatorService.START_HOUR))
+
+    }
+  }
+
+copyDate(date: Date): Date {
+    let newDate = new Date();
+    newDate.setDate(date.getDate());
+    newDate.setMinutes(0);
+    newDate.setSeconds(0);
+    return newDate;
+  }
+
+  private calculateHours(startHour: number, stopHour:number): number {
+    return startHour-stopHour;
+  }
+
+  private calculateMinutes(startDate: Date, stopDate: Date): number {
+    return (startDate.getTime()-stopDate.getTime())/HeightCalculatorService.MILISEC_IN_MINUTE;
+  }
+
   calculateSizeOfElements(): number { 
-    const scale = this.calculateHeight();
+    const scale = this.calculateReservationHeight();
     if (scale < 600) {
       return  scale/ 16;
     } else {
@@ -41,5 +85,14 @@ export class ReservationComponent implements OnInit {
     return (this.timeComperatorService.isStartBeforeCurrentDate(new Date(), this.reservation.startDate)
     && this.timeComperatorService.isStopAfterCurrentDate(new Date(), this.reservation.stopDate));
   }
+
+  isReservationStartedThisDay(): boolean {
+    return this.timeComperatorService.haveDatesTheSameDay(this.reservation.startDate, this.date);
+  }
+
+  isReservationStoppedThisDay(): boolean {
+    return this.timeComperatorService.haveDatesTheSameDay(this.reservation.stopDate, this.date)
+  }
+
 
 }
