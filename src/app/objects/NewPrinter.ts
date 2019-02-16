@@ -12,7 +12,7 @@ export class NewPrinter {
   toBackend(): NewPrinterBackend {
     return <NewPrinterBackend> {
       guid: this._guid,
-      printerName: this._name
+      name: this._name
     };
   }
 

@@ -15,7 +15,7 @@
     <input id="reservationDurationInput" class="form-control" type="number" placeholder="6" formControlName="duration"/>
     <app-validation-errors [formField]="findFormField('duration')"></app-validation-errors>
   </div>
-  <div style="flex-direction: column; display: flex; justify-content: flex-end; border: 0">
+  <div style="padding-top: 32px">
     <button [disabled]="reservationForm" class="btn btn-success pl-3 pr-3">Dodaj</button>
   </div>
 </form>

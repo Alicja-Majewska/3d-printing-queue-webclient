@@ -50,6 +50,7 @@ export class PrinterQueueService {
   }
 
   addPrinter(newPrinter: NewPrinter): Observable<boolean> {
+    console.log('try to add new printer');
     const url = 'printers';
     return this.http.post<boolean>(url, newPrinter.toBackend()).pipe(
       catchError(this.handleError)
