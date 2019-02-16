@@ -25,8 +25,8 @@ export class PrinterQueueService {
       map((printers: PrinterBackend[]) => Printer.fromBackends(printers))
     );
 
-    return printers;
-    // return of(Printer.fromBackends(PrintersDataFactory.getMany()));
+    //return printers;
+    return of(Printer.fromBackends(PrintersDataFactory.getMany()));
   }
 
   fetchReservations(dateStart: Date, dateEnd: Date, printerId: string): Observable<Reservation[]> {
@@ -52,6 +52,7 @@ export class PrinterQueueService {
   addPrinter(newPrinter: NewPrinter): Observable<boolean> {
     console.log('try to add new printer');
     const url = 'printers';
+    //TODO co ma zwracac?
     return this.http.post<boolean>(url, newPrinter.toBackend()).pipe(
       catchError(this.handleError)
     );
