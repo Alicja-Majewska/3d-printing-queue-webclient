@@ -1,3 +1,33 @@
-<p>
-  confirmation works!
-</p>
+<section container="body">
+
+  <div class="modal-header " style="background-color: lightgrey">
+    <h5 class="white">{{title}}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()" role="button">
+      <i class="fa fa-times-circle white pr-2" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <form (ngSubmit)="accept()" [formGroup]="descriptionForm">
+    <div class="modal-body pl-5 pr-5">
+
+      <div class="pt-4 form-group">
+        <label for="problemDescription">Opis problemu</label>
+        <textarea type="text" formControlName="description" class="form-control" id="problemDescription" rows="8"
+                  placeholder="Opis problemu"></textarea>
+        <app-validation-errors [formField]="findFormField('description')"></app-validation-errors>
+      </div>
+    </div>
+
+    <div class="modal-footer pt-4 pr-5 pb-4">
+      <button [disabled]="descriptionForm.invalid" class="btn btn-success pl-3 pr-3 mr-3" type="submit"
+              (click)="accept()"
+      >Wyślij
+      </button>
+      <button type="button" (click)="decline()" class="btn btn-secondary pl-3 pr-3">Anuluj</button>
+    </div>
+
+  </form>
+</section>
+
+
+

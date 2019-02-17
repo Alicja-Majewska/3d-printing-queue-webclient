@@ -16,6 +16,6 @@
     <app-validation-errors [formField]="findFormField('duration')"></app-validation-errors>
   </div>
   <div style="padding-top: 32px">
-    <button [disabled]="reservationForm.invalid" class="btn btn-success pl-3 pr-3">Dodaj</button>
+    <button [disabled]="reservationForm.invalid || printer?.isBroken()" class="btn btn-success pl-3 pr-3">Dodaj</button>
   </div>
 </form>

@@ -21,12 +21,7 @@ export class AddPrinterComponent implements OnInit {
 
   openMainRewardModal(): void {
     const modalRef = this.ngbModal.open(PrinterCreatorComponent, {size: 'lg'});
-
-    // modalRef.componentInstance.actualReward = this.buildRewardForm();
-
-
-    modalRef.result.then((result) => {
-      // this.rewards.push(result);
+       modalRef.result.then((result) => {
     }, () => {
     });
 

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PrinterQueueService} from '../../services/printer-queue.service';
 import {cloneDeep} from 'lodash';
 import {NewReservation} from '../../objects/NewReservation';
+import {Printer} from '../../objects/Printer';
 import {UserDataFactory} from '../../data/UserDataFactory';
 import { Guid } from "guid-typescript";
 
@@ -17,7 +18,7 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
   reservationForm: FormGroup;
 
   @Input()
-  printerId: string;
+  printer: Printer;
 
   @Input()
   selectedDate: string;
@@ -31,7 +32,7 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (this.reservationForm) {
-      this.reservationForm.get('printerId').setValue(this.printerId);
+      this.reservationForm.get('printerId').setValue(this.printer.id);
       this.reservationForm.get('startDateTime').patchValue({
         date: this.selectedDate
       });
@@ -66,7 +67,7 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
       duration: [2, [Validators.required, Validators.min(1), Validators.max(50)]],
-      printerId: [this.printerId, Validators.required],
+      printerId: [this.printer.id, Validators.required],
       startDateTime: this.fb.group({
         time: ['', Validators.required],
         date: [this.selectedDate, Validators.required]
