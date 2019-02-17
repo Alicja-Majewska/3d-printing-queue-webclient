@@ -1,4 +1,5 @@
 import {UserEnum} from './UserEnum';
+import {UserBackend} from './UserBackend';
 
 export class User {
 
@@ -7,6 +8,17 @@ export class User {
   private _surname: string;
   private _mail: string;
   private _role: UserEnum;
+
+  static fromBackend(backend: UserBackend): User {
+    const user: User = new User();
+    user._id = backend.id;
+    user._name = backend.name;
+    user._surname = backend.surname;
+    user._mail = backend.mail;
+    user._role = UserEnum.valueOf(backend.role);
+
+    return user;
+  }
 
   get id(): string {
     return this._id;

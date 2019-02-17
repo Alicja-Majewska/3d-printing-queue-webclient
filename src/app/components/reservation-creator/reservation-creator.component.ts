@@ -39,11 +39,9 @@ export class ReservationCreatorComponent implements OnInit, OnChanges {
   }
 
   addReservation() {
-    console.log(this.reservationForm);
     if (this.reservationForm.valid) {
       const newReservation = this.createNewReservationFromForm();
       this.printerQueueService.addReservation(newReservation);
-      console.log(newReservation);
     }
   }
 

@@ -11,11 +11,19 @@ import {DatePipe} from '@angular/common';
 import {ReservationBackend} from '../objects/ReservationBackend';
 import {PrintersDataFactory} from '../data/PrintersDataFactory';
 import {ReservationDataFactory} from '../data/ReservationDataFactory';
+import {HeightCalculatorService} from './height-calculator.service';
+import {ReservationType} from '../objects/ReservationType';
+import {UserDataFactory} from '../data/UserDataFactory';
+import {User} from '../objects/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrinterQueueService {
+
+  private temporalReservations: Reservation[] = [];
+
+  static readonly DEFAULT_TECHNICAL_BRAKE = 15;
 
   constructor(private http: HttpClient, private datePipe: DatePipe) {
   }
@@ -38,15 +46,31 @@ export class PrinterQueueService {
     params = params.set("from", this.datePipe.transform(dateStart, 'yyyy-MM-dd'));
     params = params.set("to", this.datePipe.transform(dateEnd, 'yyyy-MM-dd'));
 
-    const reservations = this.http.get<ReservationBackend[]>(url, { params: params})
+    const reservations = this.http.get<ReservationBackend[]>(url, {params: params})
       .pipe(
         map((reservations: ReservationBackend[]) => Reservation.fromBackends(reservations))
       );
     // return reservations;
-     return of(Reservation.fromBackends(ReservationDataFactory.getMany()));
+    return of(Reservation.fromBackends(ReservationDataFactory.getMany()).concat(this.temporalReservations));
   }
 
   addReservation(newReservation: NewReservation): void {
+    const temporalReservation: Reservation = this.createTemporalReservation(newReservation);
+    this.temporalReservations.push(temporalReservation);
+  }
+
+  createTemporalReservation(newReservation: NewReservation): Reservation {
+    const durationInHours = newReservation.durationInMinutes / HeightCalculatorService.MINUTES_IN_HOUR;
+    const endDate = this.calculateEndDate(newReservation.startDate, newReservation.durationInMinutes);
+    const user = User.fromBackend(UserDataFactory.getOne());
+
+    return Reservation.createReservation(newReservation.guid, newReservation.name, durationInHours, newReservation.startDate,
+      endDate, ReservationType.TEMPORARY, user, PrinterQueueService.DEFAULT_TECHNICAL_BRAKE);
+  }
+
+  private calculateEndDate(startDate: Date, durationInMinutes: number): Date {
+    const calculatedDurationInMiliseconds = (durationInMinutes + 2 * PrinterQueueService.DEFAULT_TECHNICAL_BRAKE) * HeightCalculatorService.MILISEC_IN_MINUTE;
+    return new Date(startDate.getTime() + calculatedDurationInMiliseconds);
 
   }
 

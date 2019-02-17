@@ -66,6 +66,7 @@ export class WeekViewComponent implements OnChanges, OnInit {
       }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log("ngOnChanges");
     this.reloadData();
   }
 

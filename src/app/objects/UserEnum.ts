@@ -1,6 +1,12 @@
 export enum UserEnum {
 
-    admin ="ADMIN",
-    regular = "REGULAR",
-    
+  ADMIN = "ADMIN",
+  REGULAR = "REGULAR",
+}
+
+export namespace UserEnum {
+
+  export function valueOf(user: string): UserEnum {
+    return user ? UserEnum[user.toUpperCase()] : UserEnum.REGULAR;
+  }
 }

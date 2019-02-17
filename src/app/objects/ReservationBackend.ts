@@ -1,12 +1,12 @@
-import { User } from './User';
+import {UserBackend} from './UserBackend';
 
 export interface ReservationBackend {
-    id: string;
-    name: string;
-    duration: number;
-    startDate: string;
-    stopDate: string;
-    type: string;
-    user: User;
-    technicalBreak: number;
+  id: string;
+  name: string;
+  duration: number;
+  startDate: string;
+  stopDate: string;
+  type: string;
+  user: UserBackend;
+  technicalBreak: number;
 }

@@ -5,5 +5,5 @@ export interface UserBackend {
     name: string;
     surname: string;
     mail: string;
-    role: UserEnum;
+    role: string;
 }

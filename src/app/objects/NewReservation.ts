@@ -30,4 +30,29 @@ export class NewReservation {
     }
   }
 
+  get guid(): string {
+    return this._guid;
+  }
+
+  get printerId(): string {
+    return this._printerId;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  get durationInMinutes(): number {
+    return this._durationInMinutes;
+  }
+
+  get startDate(): Date {
+    return this._startDate;
+  }
+
+  get ownerId(): string {
+    return this._ownerId;
+  }
+
+
 }

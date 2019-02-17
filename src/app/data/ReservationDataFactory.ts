@@ -25,7 +25,7 @@ export class ReservationDataFactory {
       stopDate: new Date('2019-02-15T14:30:00').toISOString(),
       type: "PRINTING",
       user: UserDataFactory.getOne(),
-      technicalBreak: 15,
+      technicalBreak: 15
     },
       <ReservationBackend> {
         id: '2',
