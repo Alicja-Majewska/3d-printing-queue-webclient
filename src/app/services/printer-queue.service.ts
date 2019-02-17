@@ -65,7 +65,7 @@ export class PrinterQueueService {
     const user = User.fromBackend(UserDataFactory.getOne());
 
     return Reservation.createReservation(newReservation.guid, newReservation.name, durationInHours, newReservation.startDate,
-      endDate, ReservationType.TEMPORARY, user, PrinterQueueService.DEFAULT_TECHNICAL_BRAKE);
+      endDate, ReservationType.TEMPORAL, user, PrinterQueueService.DEFAULT_TECHNICAL_BRAKE);
   }
 
   private calculateEndDate(startDate: Date, durationInMinutes: number): Date {

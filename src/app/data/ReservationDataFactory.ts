@@ -1,5 +1,6 @@
 import {ReservationBackend} from '../objects/ReservationBackend';
 import {UserDataFactory} from './UserDataFactory';
+import {ReservationType} from '../objects/ReservationType';
 
 export class ReservationDataFactory {
 
@@ -49,11 +50,11 @@ export class ReservationDataFactory {
       },
       <ReservationBackend> {
         id: '4',
-        name: "Czwarte drukowanie",
+        name: "Konserwacja urządzenia",
         duration: 50,
         startDate: new Date('2019-02-15T14:30:00').toISOString(),
         stopDate: new Date('2019-02-17T17:00:00').toISOString(),
-        type: "PRINTING",
+        type: "MAINTENANCE",
         user: UserDataFactory.getOne(),
         technicalBreak: 15,
       }

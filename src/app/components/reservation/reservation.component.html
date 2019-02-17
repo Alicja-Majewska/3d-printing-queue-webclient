@@ -1,6 +1,6 @@
 <div *ngIf="reservation" >
   <div *ngIf="isReservationStartedThisDay()" class="technicalSpace" [ngStyle]="{'height.px': calculateTechnicalBreakHeight()}"></div>
-  <div class="label label-default"
+  <div class="label-default" [ngClass]="'main-panel-' + reservation.type"
     [ngStyle]="{ 'height.px': calculateReservationHeight()}">
         <p [ngStyle]="{ 'font-size.px': calculateSizeOfElements()}"><b>NAZWA: </b>{{reservation.name}}</p>
         <p [ngStyle]="{ 'font-size.px': calculateSizeOfElements()}"><b>CZAS DRUKOWANIA: </b>{{reservation.duration}}h</p>

@@ -1,5 +1,5 @@
 export enum ReservationType {
-  TEMPORARY = "TEMPORARY", PRINTING = "PRINTING", CONSERVATION = "CONSERVATION"
+  TEMPORAL = "TEMPORAL", PRINTING = "PRINTING", MAINTENANCE = "MAINTENANCE"
 }
 
 export namespace ReservationType {
