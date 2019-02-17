@@ -10,7 +10,7 @@
     ></ng-select>
   </div>
   <div class="mr-4 mt-4" style="padding-top: 32px">
-    <app-add-printer ></app-add-printer>
+    <app-add-printer></app-add-printer>
   </div>
 
   <div class="flex-column mr-2 mt-4" style="width: 250px">
@@ -25,10 +25,16 @@
   </div>
 
   <div class="mt-4">
-    <app-reservation-creator [printerId]="selectedPrinter?.id" [selectedDate]="convertFromNgbDate(selectedDate)"></app-reservation-creator>
+    <app-reservation-creator [printerId]="selectedPrinter?.id"
+                             [selectedDate]="convertFromNgbDate(selectedDate)"></app-reservation-creator>
+  </div>
+  <div class="mt-2">
+    <app-failure [printer]="selectedPrinter"></app-failure>
   </div>
 </section>
+
 
 <section class="m-5">
   <app-week-view [selectedDate]="convertFromNgbDate(selectedDate)" [printer]="selectedPrinter"></app-week-view>
 </section>
+

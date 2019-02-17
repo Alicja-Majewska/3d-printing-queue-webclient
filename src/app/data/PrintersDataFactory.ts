@@ -6,7 +6,7 @@ export class PrintersDataFactory {
     return <PrinterBackend>{
       id: '1',
       name: "Drukarka 3D MT4 6P",
-      status: "WORKING"
+      status: "ACTIVE"
     };
   }
 
@@ -15,12 +15,12 @@ export class PrintersDataFactory {
       <PrinterBackend>{
         id: '1',
         name: "Drukarka 3D MT4 6P",
-        status: "WORKING"
+        status: "ACTIVE"
       },
       <PrinterBackend>{
         id: '2',
         name: "Drukarka 3D MT4 7P",
-        status: "WORKING"
+        status: "ACTIVE"
       },
       <PrinterBackend>{
         id: '3',
@@ -30,7 +30,7 @@ export class PrintersDataFactory {
       <PrinterBackend>{
         id: '4',
         name: "Drukarka 3D MT2 5P",
-        status: "WORKING"
+        status: "ACTIVE"
       }
     ];
   }

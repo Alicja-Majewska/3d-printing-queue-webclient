@@ -18,6 +18,7 @@ import {AddHeaderInterceptor} from './interceptors/AddHeaderInterceptor';
 import { AddPrinterComponent } from './components/add-printer/add-printer.component';
 import { PrinterCreatorComponent } from './components/printer-creator/printer-creator.component';
 import {DatePipe} from '@angular/common';
+import { FailureComponent } from './components/failure/failure.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {DatePipe} from '@angular/common';
     ValidationErrorsComponent,
     AddPrinterComponent,
     PrinterCreatorComponent,
+    FailureComponent,
   ],
   imports: [
     BrowserModule,
