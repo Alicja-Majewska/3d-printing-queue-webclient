@@ -1,0 +1,13 @@
+.printerBroken {
+  background-color: rgba(255, 0, 0, 0.24);
+  opacity: 0.5;
+}
+
+.week-view-container {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  display: flex;
+  flex: auto;
+  border-radius: 10px;
+  padding: 20px 10px 20px 10px;
+}

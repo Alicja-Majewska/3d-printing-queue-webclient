@@ -18,14 +18,6 @@ export class FailureComponent implements OnInit {
   ngOnInit() {
   }
 
-  isPrinterBroken(): boolean {
-    return this.printer.status === PrinterStatus.BROKEN;
-  }
-
-  isPrinterActive(): boolean {
-    return this.printer.status === PrinterStatus.ACTIVE;
-  }
-
   reportFailure() {
 
   }

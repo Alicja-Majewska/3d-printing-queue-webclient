@@ -1,4 +1,4 @@
-<section style=" flex-direction: row; flex-wrap: nowrap; display: flex; flex:auto">
+<section class="week-view-container" [ngClass]="{'printerBroken': printer?.isBroken()}">
   <div>
     <app-time-ruler></app-time-ruler>
   </div>

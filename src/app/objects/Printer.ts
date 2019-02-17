@@ -32,4 +32,12 @@ export class Printer {
   get status(): PrinterStatus {
     return this._status;
   }
+
+  isBroken(): boolean {
+    return this._status === PrinterStatus.BROKEN;
+  }
+
+  isActive(): boolean {
+    return this._status === PrinterStatus.ACTIVE;
+  }
 }

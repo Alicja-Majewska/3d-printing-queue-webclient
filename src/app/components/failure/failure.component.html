@@ -1,8 +1,8 @@
 <div style="width: 400px; display: flex; flex: 1 1; flex-direction: row">
-  <button style="width: 50%" class="btn btn-danger mr-3 pl-3 pr-3" [disabled]="isPrinterBroken()"
+  <button style="width: 50%" class="btn btn-danger mr-3 pl-3 pr-3" [disabled]="printer?.isBroken()"
           (click)="reportFailure()">Zgłoś awarię
   </button>
-  <button style="width: 50%" class="btn btn-success pl-3 pr-3" [disabled]="isPrinterActive()"
+  <button style="width: 50%" class="btn btn-success pl-3 pr-3" [disabled]="printer?.isActive()"
           (click)="reportFailureRepaired()">Naprawiłem awarię
   </button>
 </div>

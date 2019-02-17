@@ -19,6 +19,7 @@ import { AddPrinterComponent } from './components/add-printer/add-printer.compon
 import { PrinterCreatorComponent } from './components/printer-creator/printer-creator.component';
 import {DatePipe} from '@angular/common';
 import { FailureComponent } from './components/failure/failure.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FailureComponent } from './components/failure/failure.component';
     AddPrinterComponent,
     PrinterCreatorComponent,
     FailureComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { FailureComponent } from './components/failure/failure.component';
     HttpClientModule
   ],
   entryComponents: [
-    PrinterCreatorComponent
+    PrinterCreatorComponent,
+    ConfirmationComponent
   ],
   providers: [
     DatePipe,
